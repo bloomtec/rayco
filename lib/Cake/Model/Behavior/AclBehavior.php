@@ -7,12 +7,12 @@
  * PHP 5
  *
  * CakePHP :  Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc.
+ * Copyright 2005-2012, Cake Software Foundation, Inc.
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP Project
  * @package       Cake.Model.Behavior
  * @since         CakePHP v 1.2.0.4487
@@ -22,6 +22,8 @@ App::uses('AclNode', 'Model');
 
 /**
  * ACL behavior
+ *
+ * Enables objects to easily tie into an ACL system
  *
  * @package       Cake.Model.Behavior
  * @link http://book.cakephp.org/2.0/en/core-libraries/behaviors/acl.html
@@ -42,7 +44,7 @@ class AclBehavior extends ModelBehavior {
  * @param array $config
  * @return void
  */
-	public function setup($model, $config = array()) {
+	public function setup(Model $model, $config = array()) {
 		if (isset($config[0])) {
 			$config['type'] = $config[0];
 			unset($config[0]);
@@ -72,7 +74,7 @@ class AclBehavior extends ModelBehavior {
  * @return array
  * @link http://book.cakephp.org/2.0/en/core-libraries/behaviors/acl.html#node
  */
-	public function node($model, $ref = null, $type = null) {
+	public function node(Model $model, $ref = null, $type = null) {
 		if (empty($type)) {
 			$type = $this->_typeMaps[$this->settings[$model->name]['type']];
 			if (is_array($type)) {
@@ -93,7 +95,7 @@ class AclBehavior extends ModelBehavior {
  * @param boolean $created True if this is a new record
  * @return void
  */
-	public function afterSave($model, $created) {
+	public function afterSave(Model $model, $created) {
 		$types = $this->_typeMaps[$this->settings[$model->name]['type']];
 		if (!is_array($types)) {
 			$types = array($types);
@@ -123,7 +125,7 @@ class AclBehavior extends ModelBehavior {
  * @param Model $model
  * @return void
  */
-	public function afterDelete($model) {
+	public function afterDelete(Model $model) {
 		$types = $this->_typeMaps[$this->settings[$model->name]['type']];
 		if (!is_array($types)) {
 			$types = array($types);
@@ -135,4 +137,5 @@ class AclBehavior extends ModelBehavior {
 			}
 		}
 	}
+
 }

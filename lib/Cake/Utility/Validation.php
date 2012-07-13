@@ -5,12 +5,12 @@
  * PHP Version 5.x
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.Utility
  * @since         CakePHP(tm) v 1.2.0.3830
@@ -154,20 +154,22 @@ class Validation {
 		}
 		$cards = array(
 			'all' => array(
-				'amex' => '/^3[4|7]\\d{13}$/',
-				'bankcard' => '/^56(10\\d\\d|022[1-5])\\d{10}$/',
-				'diners'   => '/^(?:3(0[0-5]|[68]\\d)\\d{11})|(?:5[1-5]\\d{14})$/',
-				'disc'     => '/^(?:6011|650\\d)\\d{12}$/',
-				'electron' => '/^(?:417500|4917\\d{2}|4913\\d{2})\\d{10}$/',
-				'enroute'  => '/^2(?:014|149)\\d{11}$/',
-				'jcb'      => '/^(3\\d{4}|2100|1800)\\d{11}$/',
-				'maestro'  => '/^(?:5020|6\\d{3})\\d{12}$/',
-				'mc'       => '/^5[1-5]\\d{14}$/',
-				'solo'     => '/^(6334[5-9][0-9]|6767[0-9]{2})\\d{10}(\\d{2,3})?$/',
-				'switch'   => '/^(?:49(03(0[2-9]|3[5-9])|11(0[1-2]|7[4-9]|8[1-2])|36[0-9]{2})\\d{10}(\\d{2,3})?)|(?:564182\\d{10}(\\d{2,3})?)|(6(3(33[0-4][0-9])|759[0-9]{2})\\d{10}(\\d{2,3})?)$/',
-				'visa'     => '/^4\\d{12}(\\d{3})?$/',
-				'voyager'  => '/^8699[0-9]{11}$/'),
-			'fast'   => '/^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6011[0-9]{12}|3(?:0[0-5]|[68][0-9])[0-9]{11}|3[47][0-9]{13})$/');
+				'amex'		=> '/^3[4|7]\\d{13}$/',
+				'bankcard'	=> '/^56(10\\d\\d|022[1-5])\\d{10}$/',
+				'diners'	=> '/^(?:3(0[0-5]|[68]\\d)\\d{11})|(?:5[1-5]\\d{14})$/',
+				'disc'		=> '/^(?:6011|650\\d)\\d{12}$/',
+				'electron'	=> '/^(?:417500|4917\\d{2}|4913\\d{2})\\d{10}$/',
+				'enroute'	=> '/^2(?:014|149)\\d{11}$/',
+				'jcb'		=> '/^(3\\d{4}|2100|1800)\\d{11}$/',
+				'maestro'	=> '/^(?:5020|6\\d{3})\\d{12}$/',
+				'mc'		=> '/^5[1-5]\\d{14}$/',
+				'solo'		=> '/^(6334[5-9][0-9]|6767[0-9]{2})\\d{10}(\\d{2,3})?$/',
+				'switch'	=> '/^(?:49(03(0[2-9]|3[5-9])|11(0[1-2]|7[4-9]|8[1-2])|36[0-9]{2})\\d{10}(\\d{2,3})?)|(?:564182\\d{10}(\\d{2,3})?)|(6(3(33[0-4][0-9])|759[0-9]{2})\\d{10}(\\d{2,3})?)$/',
+				'visa'		=> '/^4\\d{12}(\\d{3})?$/',
+				'voyager'	=> '/^8699[0-9]{11}$/'
+			),
+			'fast' => '/^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6011[0-9]{12}|3(?:0[0-5]|[68][0-9])[0-9]{11}|3[47][0-9]{13})$/'
+		);
 
 		if (is_array($type)) {
 			foreach ($type as $value) {
@@ -306,9 +308,7 @@ class Validation {
 
 		$format = (is_array($format)) ? array_values($format) : array($format);
 		foreach ($format as $key) {
-			$regex = $regex[$key];
-
-			if (self::_check($check, $regex) === true) {
+			if (self::_check($check, $regex[$key]) === true) {
 				return true;
 			}
 		}
@@ -382,9 +382,9 @@ class Validation {
 	public static function decimal($check, $places = null, $regex = null) {
 		if (is_null($regex)) {
 			if (is_null($places)) {
-				$regex = '/^[-+]?[0-9]*\\.{1}[0-9]+(?:[eE][-+]?[0-9]+)?$/';
+				$regex = '/^[-+]?[0-9]*(\\.{1}[0-9]+(?:[eE][-+]?[0-9]+)?)?$/';
 			} else {
-				$regex = '/^[-+]?[0-9]*\\.{1}[0-9]{'.$places.'}$/';
+				$regex = '/^[-+]?[0-9]*(\\.{1}[0-9]{' . $places . '})?$/';
 			}
 		}
 		return self::_check($check, $regex);
@@ -441,7 +441,7 @@ class Validation {
  * Check that value has a valid file extension.
  *
  * @param mixed $check Value to check
- * @param array $extensions file extenstions to allow
+ * @param array $extensions file extensions to allow
  * @return boolean Success
  */
 	public static function extension($check, $extensions = array('gif', 'jpeg', 'png', 'jpg')) {
@@ -544,7 +544,7 @@ class Validation {
 		}
 		if ($options['in'] && is_array($options['in'])) {
 			foreach ($check as $val) {
-				if (!in_array($val, $options['in'])) {
+				if (!in_array($val, $options['in'], true)) {
 					return false;
 				}
 			}
@@ -580,7 +580,8 @@ class Validation {
 				case 'us':
 				case 'all':
 				case 'can':
-				// includes all NANPA members. see http://en.wikipedia.org/wiki/North_American_Numbering_Plan#List_of_NANPA_countries_and_territories
+					// includes all NANPA members.
+					// see http://en.wikipedia.org/wiki/North_American_Numbering_Plan#List_of_NANPA_countries_and_territories
 					$regex  = '/^(?:\+?1)?[-. ]?\\(?[2-9][0-8][0-9]\\)?[-. ]?[2-9][0-9]{2}[-. ]?[0-9]{4}$/';
 				break;
 			}
@@ -702,7 +703,7 @@ class Validation {
 	public static function url($check, $strict = false) {
 		self::_populateIp();
 		$validChars = '([' . preg_quote('!"$&\'()*+,-.@_:;=~[]') . '\/0-9a-z\p{L}\p{N}]|(%[0-9a-f]{2}))';
-		$regex = '/^(?:(?:https?|ftps?|file|news|gopher):\/\/)' . (!empty($strict) ? '' : '?') .
+		$regex = '/^(?:(?:https?|ftps?|sftp|file|news|gopher):\/\/)' . (!empty($strict) ? '' : '?') .
 			'(?:' . self::$_pattern['IPv4'] . '|\[' . self::$_pattern['IPv6'] . '\]|' . self::$_pattern['hostname'] . ')(?::[1-9][0-9]{0,4})?' .
 			'(?:\/?|\/' . $validChars . '*)?' .
 			'(?:\?' . $validChars . '*)?' .
@@ -718,7 +719,7 @@ class Validation {
  * @return boolean Success
  */
 	public static function inList($check, $list) {
-		return in_array($check, $list);
+		return in_array($check, $list, true);
 	}
 
 /**
@@ -880,4 +881,5 @@ class Validation {
 	protected static function _reset() {
 		self::$errors = array();
 	}
+
 }

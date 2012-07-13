@@ -5,20 +5,22 @@
  * PHP 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.Model
  * @since         CakePHP(tm) v 1.2.0.5550
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
+
 App::uses('Model', 'Model');
 App::uses('AppModel', 'Model');
 App::uses('ConnectionManager', 'Model');
+App::uses('File', 'Utility');
 
 /**
  * Base Class for Schema management
@@ -160,13 +162,13 @@ class CakeSchema extends Object {
 		$this->build($options);
 		extract(get_object_vars($this));
 
-		$class =  $name .'Schema';
+		$class = $name . 'Schema';
 
 		if (!class_exists($class)) {
 			if (file_exists($path . DS . $file) && is_file($path . DS . $file)) {
-				require_once($path . DS . $file);
+				require_once $path . DS . $file;
 			} elseif (file_exists($path . DS . 'schema.php') && is_file($path . DS . 'schema.php')) {
-				require_once($path . DS . 'schema.php');
+				require_once $path . DS . 'schema.php';
 			}
 		}
 
@@ -174,7 +176,6 @@ class CakeSchema extends Object {
 			$Schema = new $class($options);
 			return $Schema;
 		}
-
 		return false;
 	}
 
@@ -206,7 +207,7 @@ class CakeSchema extends Object {
 		}
 
 		$tables = array();
-		$currentTables = $db->listSources();
+		$currentTables = (array)$db->listSources();
 
 		$prefix = null;
 		if (isset($db->config['prefix'])) {
@@ -247,10 +248,15 @@ class CakeSchema extends Object {
 					continue;
 				}
 
-				$Object = ClassRegistry::init(array('class' => $model, 'ds' => $connection));
+				try {
+					$Object = ClassRegistry::init(array('class' => $model, 'ds' => $connection));
+				} catch (CakeException $e) {
+					continue;
+				}
+
 				$db = $Object->getDataSource();
 				if (is_object($Object) && $Object->useTable !== false) {
-					$fulltable = $table = $db->fullTableName($Object, false);
+					$fulltable = $table = $db->fullTableName($Object, false, false);
 					if ($prefix && strpos($table, $prefix) !== 0) {
 						continue;
 					}
@@ -270,7 +276,7 @@ class CakeSchema extends Object {
 									$class = $assocData['with'];
 								}
 								if (is_object($Object->$class)) {
-									$withTable = $db->fullTableName($Object->$class, false);
+									$withTable = $db->fullTableName($Object->$class, false, false);
 									if ($prefix && strpos($withTable, $prefix) !== 0) {
 										continue;
 									}
@@ -307,7 +313,7 @@ class CakeSchema extends Object {
 					'aros', 'acos', 'aros_acos', Configure::read('Session.table'), 'i18n'
 				);
 
-				$fulltable = $db->fullTableName($Object, false);
+				$fulltable = $db->fullTableName($Object, false, false);
 
 				if (in_array($table, $systemTables)) {
 					$tables[$Object->table] = $this->_columns($Object);
@@ -378,9 +384,9 @@ class CakeSchema extends Object {
 		}
 		$out .= "}\n";
 
-		$file = new SplFileObject($path . DS . $file, 'w+');
-		$content = "<?php \n/* generated on: " . date('Y-m-d H:i:s') . " : ". time() . " */\n{$out}";
-		if ($file->fwrite($content)) {
+		$file = new File($path . DS . $file, true);
+		$content = "<?php \n{$out}";
+		if ($file->write($content)) {
 			return $content;
 		}
 		return false;
@@ -402,7 +408,7 @@ class CakeSchema extends Object {
 				if ($field != 'indexes' && $field != 'tableParameters') {
 					if (is_string($value)) {
 						$type = $value;
-						$value = array('type'=> $type);
+						$value = array('type' => $type);
 					}
 					$col = "\t\t'{$field}' => array('type' => '" . $value['type'] . "', ";
 					unset($value['type']);
@@ -479,7 +485,7 @@ class CakeSchema extends Object {
 				if (!empty($old[$table][$field])) {
 					$diff = $this->_arrayDiffAssoc($value, $old[$table][$field]);
 					if (!empty($diff) && $field !== 'indexes' && $field !== 'tableParameters') {
-						$tables[$table]['change'][$field] = array_merge($old[$table][$field], $diff);
+						$tables[$table]['change'][$field] = $value;
 					}
 				}
 
@@ -569,7 +575,7 @@ class CakeSchema extends Object {
 			foreach ($values as $key => $val) {
 				if (is_array($val)) {
 					$vals[] = "'{$key}' => array('" . implode("', '",  $val) . "')";
-				} else if (!is_numeric($key)) {
+				} elseif (!is_numeric($key)) {
 					$val = var_export($val, true);
 					$vals[] = "'{$key}' => {$val}";
 				}
@@ -697,4 +703,5 @@ class CakeSchema extends Object {
 	protected function _noPrefixTable($prefix, $table) {
 		return preg_replace('/^' . preg_quote($prefix) . '/', '', $table);
 	}
+
 }

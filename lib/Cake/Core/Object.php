@@ -1,19 +1,12 @@
 <?php
 /**
- * Object class, allowing __construct and __destruct in PHP4.
- *
- * Also includes methods for logging and the special method RequestAction,
- * to call other Controllers' Actions from anywhere.
- *
- * PHP 5
- *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.Core
  * @since         CakePHP(tm) v 0.2.9
@@ -55,7 +48,7 @@ class Object {
  * or tie plugins into a main application. requestAction can be used to return rendered views
  * or fetch the return value from controller actions.
  *
- * Under the hood this method uses Router::reverse() to convert the $url parmeter into a string
+ * Under the hood this method uses Router::reverse() to convert the $url parameter into a string
  * URL.  You should use URL formats that are compatible with Router::reverse()
  *
  * #### Passing POST and GET data
@@ -64,7 +57,7 @@ class Object {
  * GET data.  The `$extra['data']` parameter allows POST data simulation.
  *
  * @param mixed $url String or array-based url.  Unlike other url arrays in CakePHP, this
- *    url will not automatically handle passed and named arguments in the $url paramenter.
+ *    url will not automatically handle passed and named arguments in the $url parameter.
  * @param array $extra if array includes the key "return" it sets the AutoRender to true.  Can
  *    also be used to submit GET/POST data, and named/passed arguments.
  * @return mixed Boolean true or false on success/failure, or contents
@@ -87,6 +80,9 @@ class Object {
 		$data = isset($extra['data']) ? $extra['data'] : null;
 		unset($extra['data']);
 
+		if (is_string($url) && strpos($url, FULL_BASE_URL) === 0) {
+			$url = Router::normalize(str_replace(FULL_BASE_URL, '', $url));
+		}
 		if (is_string($url)) {
 			$request = new CakeRequest($url);
 		} elseif (is_array($url)) {
@@ -97,7 +93,6 @@ class Object {
 		if (isset($data)) {
 			$request->data = $data;
 		}
-
 		$dispatcher = new Dispatcher();
 		$result = $dispatcher->dispatch($request, new CakeResponse(), $extra);
 		Router::popRequest();
@@ -144,7 +139,7 @@ class Object {
 	}
 
 /**
- * Convience method to write a message to CakeLog.  See CakeLog::write()
+ * Convenience method to write a message to CakeLog.  See CakeLog::write()
  * for more information on writing to logs.
  *
  * @param string $msg Log message
@@ -152,9 +147,7 @@ class Object {
  * @return boolean Success of log write
  */
 	public function log($msg, $type = LOG_ERROR) {
-		if (!class_exists('CakeLog')) {
-			require CAKE . 'cake_log.php';
-		}
+		App::uses('CakeLog', 'Log');
 		if (!is_string($msg)) {
 			$msg = print_r($msg, true);
 		}
@@ -208,4 +201,5 @@ class Object {
 			}
 		}
 	}
+
 }

@@ -8,21 +8,18 @@
  * PHP 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.Routing
  * @since         CakePHP(tm) v 0.2.9
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
-/**
- * List of helpers to include
- */
 App::uses('Router', 'Routing');
 App::uses('CakeRequest', 'Network');
 App::uses('CakeResponse', 'Network');
@@ -56,7 +53,7 @@ class Dispatcher {
  * to autoRender, via Controller::$autoRender, then Dispatcher will render the view.
  *
  * Actions in CakePHP can be any public method on a controller, that is not declared in Controller.  If you
- * want controller methods to be public and in-accesible by URL, then prefix them with a `_`.
+ * want controller methods to be public and in-accessible by URL, then prefix them with a `_`.
  * For example `public function _loadPosts() { }` would not be accessible via URL.  Private and protected methods
  * are also not accessible via URL.
  *
@@ -67,11 +64,10 @@ class Dispatcher {
  * @param CakeResponse $response Response object to put the results of the dispatch into.
  * @param array $additionalParams Settings array ("bare", "return") which is melded with the GET and POST params
  * @return boolean Success
- * @throws MissingControllerException, MissingActionException, PrivateActionException if any of those error states
- *    are encountered.
+ * @throws MissingControllerException When the controller is missing.
  */
 	public function dispatch(CakeRequest $request, CakeResponse $response, $additionalParams = array()) {
-		if ($this->asset($request->url, $response) || $this->cached($request->here)) {
+		if ($this->asset($request->url, $response) || $this->cached($request->here())) {
 			return;
 		}
 
@@ -206,7 +202,7 @@ class Dispatcher {
 /**
  * Outputs cached dispatch view cache
  *
- * @param string $path Requested URL path
+ * @param string $path Requested URL path with any query string parameters
  * @return string|boolean False if is not cached or output
  */
 	public function cached($path) {
@@ -221,12 +217,9 @@ class Dispatcher {
 			if (!file_exists($filename)) {
 				$filename = CACHE . 'views' . DS . $path . '_index.php';
 			}
-
 			if (file_exists($filename)) {
-				App::uses('ThemeView', 'View');
-
 				$controller = null;
-				$view = new ThemeView($controller);
+				$view = new View($controller);
 				return $view->renderCache($filename, microtime(true));
 			}
 		}
@@ -272,7 +265,7 @@ class Dispatcher {
 		if ($parts[0] === 'theme') {
 			$themeName = $parts[1];
 			unset($parts[0], $parts[1]);
-			$fileFragment = implode(DS, $parts);
+			$fileFragment = urldecode(implode(DS, $parts));
 			$path = App::themePath($themeName) . 'webroot' . DS;
 			if (file_exists($path . $fileFragment)) {
 				$assetFile = $path . $fileFragment;
@@ -281,7 +274,7 @@ class Dispatcher {
 			$plugin = Inflector::camelize($parts[0]);
 			if (CakePlugin::loaded($plugin)) {
 				unset($parts[0]);
-				$fileFragment = implode(DS, $parts);
+				$fileFragment = urldecode(implode(DS, $parts));
 				$pluginWebroot = CakePlugin::path($plugin) . 'webroot' . DS;
 				if (file_exists($pluginWebroot . $fileFragment)) {
 					$assetFile = $pluginWebroot . $fileFragment;
@@ -316,13 +309,13 @@ class Dispatcher {
 			$response->type($contentType);
 		}
 		if (!$compressionEnabled) {
-		    $response->header('Content-Length', filesize($assetFile));
+			$response->header('Content-Length', filesize($assetFile));
 		}
 		$response->cache(filemtime($assetFile));
 		$response->send();
 		ob_clean();
 		if ($ext === 'css' || $ext === 'js') {
-			include($assetFile);
+			include $assetFile;
 		} else {
 			readfile($assetFile);
 		}
@@ -331,4 +324,5 @@ class Dispatcher {
 			ob_end_flush();
 		}
 	}
+
 }

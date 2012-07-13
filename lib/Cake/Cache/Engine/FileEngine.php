@@ -9,19 +9,23 @@
  * PHP 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @since         CakePHP(tm) v 1.2.0.4933
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 /**
- * File Storage engine for cache
+ * File Storage engine for cache.  Filestorage is the slowest cache storage
+ * to read and write.  However, it is good for servers that don't have other storage
+ * engine available, or have content which is not performance sensitive.
+ *
+ * You can configure a FileEngine cache, using Cache::config()
  *
  * @package       Cake.Cache.Engine
  */
@@ -66,8 +70,8 @@ class FileEngine extends CacheEngine {
 	public function init($settings = array()) {
 		parent::init(array_merge(
 			array(
-				'engine' => 'File', 'path' => CACHE, 'prefix'=> 'cake_', 'lock'=> true,
-				'serialize'=> true, 'isWindows' => false, 'mask' => 0664
+				'engine' => 'File', 'path' => CACHE, 'prefix' => 'cake_', 'lock' => true,
+				'serialize' => true, 'isWindows' => false, 'mask' => 0664
 			),
 			$settings
 		));
@@ -84,7 +88,7 @@ class FileEngine extends CacheEngine {
 /**
  * Garbage collection. Permanently remove all expired and deleted data
  *
- * @return boolean True if garbage collection was succesful, false on failure
+ * @return boolean True if garbage collection was successful, false on failure
  */
 	public function gc() {
 		return $this->clear(true);
@@ -125,14 +129,14 @@ class FileEngine extends CacheEngine {
 		$contents = $expires . $lineBreak . $data . $lineBreak;
 
 		if ($this->settings['lock']) {
-		    $this->_File->flock(LOCK_EX);
+			$this->_File->flock(LOCK_EX);
 		}
 
 		$this->_File->rewind();
 		$success = $this->_File->ftruncate(0) && $this->_File->fwrite($contents) && $this->_File->fflush();
 
 		if ($this->settings['lock']) {
-		    $this->_File->flock(LOCK_UN);
+			$this->_File->flock(LOCK_UN);
 		}
 
 		return $success;
@@ -273,7 +277,7 @@ class FileEngine extends CacheEngine {
 
 /**
  * Sets the current cache key this class is managing, and creates a writable SplFileObject
- * for the cache file the key is refering to.
+ * for the cache file the key is referring to.
  *
  * @param string $key The key
  * @param boolean $createKey Whether the key should be created if it doesn't exists, or not
@@ -295,7 +299,7 @@ class FileEngine extends CacheEngine {
 			}
 			unset($path);
 
-			if (!$exists && !chmod($this->_File->getPathname(), (int) $this->settings['mask'])) {
+			if (!$exists && !chmod($this->_File->getPathname(), (int)$this->settings['mask'])) {
 				trigger_error(__d(
 					'cake_dev', 'Could not apply permission mask "%s" on cache file "%s"',
 					array($this->_File->getPathname(), $this->settings['mask'])), E_USER_WARNING);
@@ -318,4 +322,5 @@ class FileEngine extends CacheEngine {
 		}
 		return true;
 	}
+
 }

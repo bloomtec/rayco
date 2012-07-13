@@ -5,12 +5,12 @@
  * PHP 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @since         CakePHP(tm) v 1.3
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -59,7 +59,7 @@ class TemplateTask extends AppShell {
  * @return array Array of bake themes that are installed.
  */
 	protected function _findThemes() {
-		$paths = App::path('Console');
+		$paths = array();
 		$core = current(App::core('Console'));
 		$separator = DS === '/' ? '/' : '\\\\';
 		$core = preg_replace('#shells' . $separator . '$#', '', $core);
@@ -70,10 +70,12 @@ class TemplateTask extends AppShell {
 		$themeFolders = $contents[0];
 
 		$plugins = App::objects('plugin');
+		$paths[] = $core;
 		foreach ($plugins as $plugin) {
 			$paths[] = $this->_pluginPath($plugin) . 'Console' . DS;
 		}
-		$paths[] = $core;
+
+		$paths = array_merge($paths, App::path('Console'));
 
 		// TEMPORARY TODO remove when all paths are DS terminated
 		foreach ($paths as $i => $path) {
@@ -147,7 +149,7 @@ class TemplateTask extends AppShell {
 			extract($this->templateVars);
 			ob_start();
 			ob_implicit_flush(0);
-			include($templateFile);
+			include $templateFile;
 			$content = ob_get_clean();
 			return $content;
 		}
@@ -212,4 +214,5 @@ class TemplateTask extends AppShell {
 		$this->err(__d('cake_console', 'Could not find template for %s', $filename));
 		return false;
 	}
+
 }

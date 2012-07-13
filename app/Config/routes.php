@@ -9,12 +9,12 @@
  * PHP 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       app.Config
  * @since         CakePHP(tm) v 0.2.9
@@ -25,12 +25,15 @@
  * its action called 'display', and we pass a param to select the view file
  * to use (in this case, /app/View/Pages/home.ctp)...
  */
-	Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
-	Router::connect('/admin', array('controller' => 'users', 'action' => 'index', 'admin' => true));
+	Router::connect('/admin', array('controller' => 'users', 'action' => 'login','plugin'=>'UserControl','admin'=>true));
+	Router::connect('/', array('controller' => 'options', 'action' => 'construccion','plugin'=>'Ez'));
+	Router::connect('/registro', array('controller' => 'users', 'action' => 'register','plugin'=>'UserControl'));
+	Router::connect('/carrito', array('controller' => 'pages', 'action' => 'carrito','plugin'=>false));
+	Router::connect('/tienda-virtual', array('controller' => 'categories', 'action' => 'index','plugin'=>false));
 /**
  * ...and connect the rest of 'Pages' controller's urls.
  */
-	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
+	//Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
 
 /**
  * Load all plugin routes.  See the CakePlugin documentation on 

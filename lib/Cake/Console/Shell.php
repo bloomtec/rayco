@@ -5,12 +5,12 @@
  * PHP 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @since         CakePHP(tm) v 1.2.0.5012
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -78,6 +78,14 @@ class Shell extends Object {
  * @var string
  */
 	public $name = null;
+
+/**
+ * The name of the plugin the shell belongs to.
+ * Is automatically set by ShellDispatcher when a shell is constructed.
+ *
+ * @var string
+ */
+	public $plugin = null;
 
 /**
  * Contains tasks to load and instantiate
@@ -366,7 +374,7 @@ class Shell extends Object {
 			return $this->_displayHelp($command);
 		}
 
-		if (($isTask || $isMethod || $isMain) && $command !== 'execute' ) {
+		if (($isTask || $isMethod || $isMain) && $command !== 'execute') {
 			$this->startup();
 		}
 
@@ -392,7 +400,7 @@ class Shell extends Object {
  */
 	protected function _displayHelp($command) {
 		$format = 'text';
-		if (!empty($this->args[0]) && $this->args[0] == 'xml')  {
+		if (!empty($this->args[0]) && $this->args[0] == 'xml') {
 			$format = 'xml';
 			$this->stdout->outputAs(ConsoleOutput::RAW);
 		} else {
@@ -409,7 +417,8 @@ class Shell extends Object {
  * @link http://book.cakephp.org/2.0/en/console-and-shells.html#Shell::getOptionParser
  */
 	public function getOptionParser() {
-		$parser = new ConsoleOptionParser($this->name);
+		$name = ($this->plugin ? $this->plugin . '.' : '') . $this->name;
+		$parser = new ConsoleOptionParser($name);
 		return $parser;
 	}
 
@@ -444,7 +453,8 @@ class Shell extends Object {
 		if (!$this->interactive) {
 			return $default;
 		}
-		$in = $this->_getInput($prompt, $options, $default);
+		$originalOptions = $options;
+		$in = $this->_getInput($prompt, $originalOptions, $default);
 
 		if ($options && is_string($options)) {
 			if (strpos($options, ',')) {
@@ -456,8 +466,13 @@ class Shell extends Object {
 			}
 		}
 		if (is_array($options)) {
-			while ($in === '' || ($in !== '' && (!in_array(strtolower($in), $options) && !in_array(strtoupper($in), $options)) && !in_array($in, $options))) {
-				$in = $this->_getInput($prompt, $options, $default);
+			$options = array_merge(
+				array_map('strtolower', $options),
+				array_map('strtoupper', $options),
+				$options
+			);
+			while ($in === '' || !in_array($in, $options)) {
+				$in = $this->_getInput($prompt, $originalOptions, $default);
 			}
 		}
 		return $in;
@@ -648,7 +663,7 @@ class Shell extends Object {
 		}
 
 		$File = new File($path, true);
-		if ($File->exists()) {
+		if ($File->exists() && $File->writable()) {
 			$data = $File->prepare($contents);
 			$File->write($data);
 			$this->out(__d('cake_console', '<success>Wrote</success> `%s`', $path));
@@ -672,7 +687,7 @@ class Shell extends Object {
 			return true;
 		}
 		$prompt = __d('cake_console', 'PHPUnit is not installed. Do you want to bake unit test files anyway?');
-		$unitTest = $this->in($prompt, array('y','n'), 'y');
+		$unitTest = $this->in($prompt, array('y', 'n'), 'y');
 		$result = strtolower($unitTest) == 'y' || strtolower($unitTest) == 'yes';
 
 		if ($result) {
@@ -716,10 +731,10 @@ class Shell extends Object {
 	}
 
 /**
- * Creates the proper controller camelized name (singularized) for the specified name
+ * Creates the proper model camelized name (singularized) for the specified name
  *
  * @param string $name Name
- * @return string Camelized and singularized controller name
+ * @return string Camelized and singularized model name
  */
 	protected function _modelName($name) {
 		return Inflector::camelize(Inflector::singularize($name));
@@ -797,4 +812,5 @@ class Shell extends Object {
 		}
 		return current(App::path('plugins')) . $pluginName . DS;
 	}
+
 }

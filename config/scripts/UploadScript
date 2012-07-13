@@ -1,11 +1,11 @@
 #!/bin/bash
 #--DEFINIR CONEXIONES Y RUTAS--
 DB_SERVER='mysql.bloomweb.co'
-DB_DATABASE='bloomweb_excelenter'
+DB_DATABASE='bloomweb_clickneat'
 DUMP_PATH='../dump.sql'
 SSH_CONN_STRING='embalao@bloomweb.co'
 PATH_TO_IMAGES='../../app/webroot/img/uploads'
-PATH_TO_UPLOAD='/home/embalao/ez2.bloomweb.co/app/webroot/img'
+PATH_TO_UPLOAD='/home/embalao/clickneat.bloomweb.co/app/webroot/img'
 #--DEFINIR EL SCRIPT--
 clear
 echo "--------------------------------------------------"

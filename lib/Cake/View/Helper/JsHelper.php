@@ -5,12 +5,12 @@
  * PHP 5
  *
  * CakePHP :  Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc.
+ * Copyright 2005-2012, Cake Software Foundation, Inc.
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.View.Helper
  * @since         CakePHP(tm) v 1.2
@@ -32,6 +32,7 @@ App::uses('Multibyte', 'I18n');
  * @property      FormHelper $Form
  */
 class JsHelper extends AppHelper {
+
 /**
  * Whether or not you want scripts to be buffered or output.
  *
@@ -189,7 +190,7 @@ class JsHelper extends AppHelper {
  * @link http://book.cakephp.org/2.0/en/core-libraries/helpers/js.html#JsHelper::writeBuffer
  */
 	public function writeBuffer($options = array()) {
-		$domReady = $this->request->is('ajax');
+		$domReady = !$this->request->is('ajax');
 		$defaults = array(
 			'onDomReady' => $domReady, 'inline' => true,
 			'cache' => false, 'clear' => true, 'safe' => true
@@ -323,6 +324,7 @@ class JsHelper extends AppHelper {
  * @param mixed $one Either an array of variables to set, or the name of the variable to set.
  * @param mixed $two If $one is a string, $two is the value for that key.
  * @return void
+ * @link http://book.cakephp.org/2.0/en/core-libraries/helpers/js.html#JsHelper::set
  */
 	public function set($one, $two = null) {
 		$data = null;
@@ -428,4 +430,5 @@ class JsHelper extends AppHelper {
 		}
 		return array($options, $htmlOptions);
 	}
+
 }

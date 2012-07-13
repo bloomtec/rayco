@@ -4,14 +4,14 @@
  *
  * PHP 5
  *
- * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * CakePHP(tm) Tests <http://book.cakephp.org/2.0/en/development/testing.html>
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link          http://book.cakephp.org/2.0/en/development/testing.html CakePHP(tm) Tests
  * @package       Cake.Test.Case.Error
  * @since         CakePHP(tm) v 2.0
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -64,9 +64,10 @@ class BlueberryComponent extends Component {
  *
  * @return void
  */
-	public function initialize($controller) {
+	public function initialize(Controller $controller) {
 		$this->testName = 'BlueberryComponent';
 	}
+
 }
 
 /**
@@ -108,6 +109,7 @@ class TestErrorController extends Controller {
 		$this->autoRender = false;
 		return 'what up';
 	}
+
 }
 
 /**
@@ -125,13 +127,16 @@ class MyCustomExceptionRenderer extends ExceptionRenderer {
 	public function missingWidgetThing() {
 		echo 'widget thing is missing';
 	}
+
 }
+
 /**
  * Exception class for testing app error handlers and custom errors.
  *
  * @package       Cake.Test.Case.Error
  */
-class MissingWidgetThingException extends NotFoundException { }
+class MissingWidgetThingException extends NotFoundException {
+}
 
 
 /**
@@ -141,40 +146,38 @@ class MissingWidgetThingException extends NotFoundException { }
  */
 class ExceptionRendererTest extends CakeTestCase {
 
-	public $_restoreError = false;
+	protected $_restoreError = false;
+
 /**
  * setup create a request object to get out of router later.
  *
  * @return void
  */
 	public function setUp() {
+		parent::setUp();
 		App::build(array(
-			'views' => array(
-				CAKE . 'Test' . DS . 'test_app' . DS . 'View'. DS
+			'View' => array(
+				CAKE . 'Test' . DS . 'test_app' . DS . 'View' . DS
 			)
-		), true);
+		), App::RESET);
 		Router::reload();
 
 		$request = new CakeRequest(null, false);
 		$request->base = '';
 		Router::setRequestInfo($request);
-		$this->_debug = Configure::read('debug');
-		$this->_error = Configure::read('Error');
 		Configure::write('debug', 2);
 	}
 
 /**
- * teardown
+ * tearDown
  *
  * @return void
  */
-	public function teardown() {
-		Configure::write('debug', $this->_debug);
-		Configure::write('Error', $this->_error);
-		App::build();
+	public function tearDown() {
 		if ($this->_restoreError) {
 			restore_error_handler();
 		}
+		parent::tearDown();
 	}
 
 /**
@@ -203,7 +206,7 @@ class ExceptionRendererTest extends CakeTestCase {
 		$ExceptionRenderer->render();
 		$result = ob_get_clean();
 
-		$this->assertEquals($result, 'widget thing is missing');
+		$this->assertEquals('widget thing is missing', $result);
 	}
 
 /**
@@ -222,7 +225,7 @@ class ExceptionRendererTest extends CakeTestCase {
 		$ExceptionRenderer->render();
 		$result = ob_get_clean();
 
-		$this->assertEquals($result, 'widget thing is missing', 'Method declared in subclass converted to error400');
+		$this->assertEquals('widget thing is missing', $result, 'Method declared in subclass converted to error400');
 	}
 
 /**
@@ -406,6 +409,7 @@ class ExceptionRendererTest extends CakeTestCase {
 		$result = ob_get_clean();
 		$this->assertContains('Not Found', $result);
 	}
+
 /**
  * test that error400 doesn't expose XSS
  *
@@ -487,10 +491,10 @@ class ExceptionRendererTest extends CakeTestCase {
 				404
 			),
 			array(
-				new MissingTableException(array('table' => 'articles', 'class' => 'Article')),
+				new MissingTableException(array('table' => 'articles', 'class' => 'Article', 'ds' => 'test')),
 				array(
 					'/<h2>Missing Database Table<\/h2>/',
-					'/table <em>articles<\/em> for model <em>Article<\/em>/'
+					'/Table <em>articles<\/em> for model <em>Article<\/em> was not found in datasource <em>test<\/em>/'
 				),
 				500
 			),
@@ -635,7 +639,7 @@ class ExceptionRendererTest extends CakeTestCase {
 			->with('missingHelper')
 			->will($this->throwException($exception));
 
-		$ExceptionRenderer->controller->expects($this->at(3))
+		$ExceptionRenderer->controller->expects($this->at(4))
 			->method('render')
 			->with('error500')
 			->will($this->returnValue(true));
@@ -644,6 +648,44 @@ class ExceptionRendererTest extends CakeTestCase {
 		$ExceptionRenderer->render();
 		sort($ExceptionRenderer->controller->helpers);
 		$this->assertEquals(array('Form', 'Html', 'Session'), $ExceptionRenderer->controller->helpers);
+	}
+
+/**
+ * Test that missing subDir/layoutPath don't cause other fatal errors.
+ *
+ * @return void
+ */
+	public function testMissingSubdirRenderSafe() {
+		$exception = new NotFoundException();
+		$ExceptionRenderer = new ExceptionRenderer($exception);
+
+		$ExceptionRenderer->controller = $this->getMock('Controller');
+		$ExceptionRenderer->controller->helpers = array('Fail', 'Boom');
+		$ExceptionRenderer->controller->layoutPath = 'json';
+		$ExceptionRenderer->controller->subDir = 'json';
+		$ExceptionRenderer->controller->viewClass = 'Json';
+		$ExceptionRenderer->controller->request = $this->getMock('CakeRequest');
+
+		$ExceptionRenderer->controller->expects($this->at(1))
+			->method('render')
+			->with('error400')
+			->will($this->throwException($exception));
+
+		$ExceptionRenderer->controller->expects($this->at(3))
+			->method('render')
+			->with('error500')
+			->will($this->returnValue(true));
+
+		$ExceptionRenderer->controller->response = $this->getMock('CakeResponse');
+		$ExceptionRenderer->controller->response->expects($this->once())
+			->method('type')
+			->with('html');
+
+		$ExceptionRenderer->render();
+		$this->assertEquals('', $ExceptionRenderer->controller->layoutPath);
+		$this->assertEquals('', $ExceptionRenderer->controller->subDir);
+		$this->assertEquals('View', $ExceptionRenderer->controller->viewClass);
+		$this->assertEquals('Errors/', $ExceptionRenderer->controller->viewPath);
 	}
 
 /**
@@ -687,9 +729,9 @@ class ExceptionRendererTest extends CakeTestCase {
 		$ExceptionRenderer->render();
 		$result = ob_get_clean();
 
-		$this->assertRegExp('/<h2>Database Error<\/h2>/', $result);
-		$this->assertRegExp('/There was an error in the SQL query/', $result);
-		$this->assertRegExp('/SELECT \* from poo_query < 5 and :seven/', $result);
-		$this->assertRegExp('/"seven" => 7/', $result);
+		$this->assertContains('<h2>Database Error</h2>', $result);
+		$this->assertContains('There was an error in the SQL query', $result);
+		$this->assertContains('SELECT * from poo_query < 5 and :seven', $result);
+		$this->assertContains("'seven' => (int) 7", $result);
 	}
 }

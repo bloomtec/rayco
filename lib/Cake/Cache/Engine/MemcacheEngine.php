@@ -6,12 +6,12 @@
  * PHP 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.Cache.Engine
  * @since         CakePHP(tm) v 1.2.0.4933
@@ -59,10 +59,10 @@ class MemcacheEngine extends CacheEngine {
 			return false;
 		}
 		parent::init(array_merge(array(
-			'engine'=> 'Memcache',
+			'engine' => 'Memcache',
 			'prefix' => Inflector::slug(APP_DIR) . '_',
 			'servers' => array('127.0.0.1'),
-			'compress'=> false,
+			'compress' => false,
 			'persistent' => true
 			), $settings)
 		);
@@ -104,7 +104,7 @@ class MemcacheEngine extends CacheEngine {
 				$position++;
 			}
 		} else {
-		    $position = strpos($server, ':');
+			$position = strpos($server, ':');
 		}
 		$port = 11211;
 		$host = $server;
@@ -234,4 +234,5 @@ class MemcacheEngine extends CacheEngine {
 		}
 		return true;
 	}
+
 }
