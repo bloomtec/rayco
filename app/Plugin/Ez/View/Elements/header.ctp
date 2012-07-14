@@ -10,7 +10,7 @@
 		<ul>
 			<li>
 				<?php
-				echo $this -> Html -> link('Crear Usuario', array('plugin' => 'user_control', 'controller' => 'users', 'action' => 'add'));
+				echo $this -> Html -> link('Agregar Usuario', array('plugin' => 'user_control', 'controller' => 'users', 'action' => 'add'));
 				?>
 			</li>
 		</ul>
@@ -26,12 +26,26 @@
 		<?php
 		echo $this -> Html -> link('Categorías', array('plugin' => false, 'controller' => 'categories', 'action' => 'index'));
 		?>
+		<ul>
+			<li>
+				<?php
+				echo $this -> Html -> link('Agregar Categoría', array('plugin' => false, 'controller' => 'categories', 'action' => 'add'));
+				?>
+			</li>
+		</ul>
 	</li>
 	<!-- SUBCATEGORÍAS -->
 	<li>
 		<?php
 		echo $this -> Html -> link('Subcategorías', array('plugin' => false, 'controller' => 'subcategories', 'action' => 'index'));
 		?>
+		<ul>
+			<li>
+				<?php
+				echo $this -> Html -> link('Agregar Subcategoría', array('plugin' => false, 'controller' => 'subcategories', 'action' => 'add'));
+				?>
+			</li>
+		</ul>
 	</li>
 	<!-- MARCAS -->
 	<li>
@@ -44,6 +58,26 @@
 		<?php
 		echo $this -> Html -> link('Productos', array('plugin' => false, 'controller' => 'products', 'action' => 'index'));
 		?>
+		<ul>
+			<li>
+				<?php
+				echo $this -> Html -> link('Agregar Producto', array('plugin' => false, 'controller' => 'products', 'action' => 'add'));
+				?>
+			</li>
+		</ul>
+	</li>
+	<!-- PUNTOS DE VENTAS -->
+	<li>
+		<?php
+		echo $this -> Html -> link('Puntos De Ventas', array('plugin' => false, 'controller' => 'points_of_sales', 'action' => 'index'));
+		?>
+		<ul>
+			<li>
+				<?php
+				echo $this -> Html -> link('Agregar Punto De Venta', array('plugin' => false, 'controller' => 'points_of_sales', 'action' => 'add'));
+				?>
+			</li>
+		</ul>
 	</li>
 	<!-- LOGOUT -->
 	<li>

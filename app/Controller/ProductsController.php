@@ -66,7 +66,7 @@ class ProductsController extends AppController {
 			$this -> Product -> create();
 			if ($this -> Product -> save($this -> request -> data)) {
 				$this -> Session -> setFlash(__('The product has been saved'));
-				$this -> redirect(array('action' => 'edit', $this -> Product -> id));
+				$this -> redirect(array('action' => 'edit', $this -> Product -> id, true));
 			} else {
 				$this -> Session -> setFlash(__('The product could not be saved. Please, try again.'));
 			}
@@ -82,7 +82,7 @@ class ProductsController extends AppController {
 	 * @param string $id
 	 * @return void
 	 */
-	public function admin_edit($id = null) {
+	public function admin_edit($id = null, $wizard = false) {
 		$this -> Product -> contain('Subcategory', 'Image');
 		$this -> Product -> id = $id;
 		if (!$this -> Product -> exists()) {
@@ -100,7 +100,7 @@ class ProductsController extends AppController {
 		}
 		$brands = $this -> Product -> Brand -> find('list');
 		$subcategories = $this -> Product -> Subcategory -> find('list');
-		$this -> set(compact('brands', 'subcategories'));
+		$this -> set(compact('brands', 'subcategories', 'wizard'));
 	}
 
 	/**

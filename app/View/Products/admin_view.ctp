@@ -1,12 +1,6 @@
 <div class="products view">
 <h2><?php  echo __('Producto');?></h2>
 	<dl>
-		<dt><?php echo __('Imagen'); ?></dt>
-		<dd>
-			<?php //echo h($product['Product']['image']); ?>
-			<?php echo $this -> Html -> image('uploads/215x215/' . $product['Product']['image']); ?>
-			&nbsp;
-		</dd>
 		<dt><?php echo __('Marca'); ?></dt>
 		<dd>
 			<?php echo $this->Html->link($product['Brand']['nombre'], array('controller' => 'brands', 'action' => 'view', $product['Brand']['id'])); ?>
@@ -15,6 +9,12 @@
 		<dt><?php echo __('Nombre'); ?></dt>
 		<dd>
 			<?php echo h($product['Product']['nombre']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Imagen'); ?></dt>
+		<dd>
+			<?php //echo h($product['Product']['image']); ?>
+			<?php echo $this -> Html -> image('uploads/215x215/' . $product['Product']['image']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Referencia'); ?></dt>
@@ -64,7 +64,6 @@
 	</ul>
 </div>
 <div class="related">
-	<?php if (!empty($product['Image'])):?>
 	<h3><?php echo __('Imagenes Relacionadas');?></h3>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
@@ -73,6 +72,7 @@
 		<th><?php echo __('Creada'); ?></th>
 		<th><?php echo __('Modificada'); ?></th>
 	</tr>
+	<?php if (!empty($product['Image'])):?>
 	<?php $i = 0; foreach ($product['Image'] as $image): ?>
 		<tr>
 			<td><?php echo $image['id'];?></td>
@@ -81,11 +81,10 @@
 			<td><?php echo $image['modified'];?></td>
 		</tr>
 	<?php endforeach; ?>
-	</table>
 	<?php endif; ?>
+	</table>
 </div>
 <div class="related">
-	<?php if (!empty($product['Subcategory'])):?>
 	<h3><?php echo __('Subcategorías Relacionadas');?></h3>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
@@ -93,15 +92,14 @@
 		<th><?php echo __('Creada'); ?></th>
 		<th><?php echo __('Modificada'); ?></th>
 	</tr>
-	<?php
-		$i = 0;
-		foreach ($product['Subcategory'] as $subcategory): ?>
+	<?php if (!empty($product['Subcategory'])):?>
+	<?php $i = 0; foreach ($product['Subcategory'] as $subcategory): ?>
 		<tr>
 			<td><?php echo $subcategory['nombre'];?></td>
 			<td><?php echo $subcategory['created'];?></td>
 			<td><?php echo $subcategory['modified'];?></td>
 		</tr>
 	<?php endforeach; ?>
-	</table>
 	<?php endif; ?>
+	</table>
 </div>
