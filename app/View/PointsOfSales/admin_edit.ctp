@@ -38,6 +38,9 @@
 <div class="actions" style="max-width: 40%;">
 	<h3><?php echo __('Acciones'); ?></h3>
 	<ul>
+		<?php if($wizard) : ?>
+		<li><?php echo $this -> Html -> link(__('Agregar Otro Punto De Venta'), array('action' => 'add')); ?></li>
+		<?php endif; ?>
 		<?php if(!$wizard) : ?>
 		<li><?php echo $this -> Form -> postLink(__('Eliminar'), array('action' => 'delete', $this -> Form -> value('PointsOfSale.id')), null, __('¿Desea eliminar %s?', $this -> Form -> value('PointsOfSale.nombre'))); ?></li>
 		<?php endif; ?>
