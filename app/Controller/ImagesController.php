@@ -109,7 +109,7 @@ class ImagesController extends AppController {
 	public function admin_view($id = null) {
 		$this -> Image -> id = $id;
 		if (!$this -> Image -> exists()) {
-			throw new NotFoundException(__('Invalid image'));
+			throw new NotFoundException(__('Imagen no válida'));
 		}
 		$this -> set('image', $this -> Image -> read(null, $id));
 	}
@@ -123,11 +123,11 @@ class ImagesController extends AppController {
 	public function admin_edit($id = null) {
 		$this -> Image -> id = $id;
 		if (!$this -> Image -> exists()) {
-			throw new NotFoundException(__('Invalid image'));
+			throw new NotFoundException(__('Imagen no válida'));
 		}
 		if ($this -> request -> is('post') || $this -> request -> is('put')) {
 			if ($this -> Image -> save($this -> request -> data)) {
-				$this -> Session -> setFlash(__('The image has been saved'));
+				$this -> Session -> setFlash(__('Se modificó la imagen'), 'crud/success');
 				$this -> redirect(
 					array(
 						'controller' => Inflector::tableize($this -> request -> data['Image']['model_class']),
@@ -136,7 +136,7 @@ class ImagesController extends AppController {
 					)
 				);
 			} else {
-				$this -> Session -> setFlash(__('The image could not be saved. Please, try again.'));
+				$this -> Session -> setFlash(__('No se modificó la imagen. Por favor, intente de nuevo.'), 'crud/error');
 			}
 		} else {
 			$this -> request -> data = $this -> Image -> read(null, $id);
@@ -155,10 +155,10 @@ class ImagesController extends AppController {
 		}
 		$this -> Image -> id = $id;
 		if (!$this -> Image -> exists()) {
-			throw new NotFoundException(__('Invalid image'));
+			throw new NotFoundException(__('Imagen no válida'));
 		}
 		if ($this -> Image -> delete()) {
-			$this -> Session -> setFlash(__('Image deleted'));
+			$this -> Session -> setFlash(__('Se eliminó la imagen'), 'crud/success');
 			$this -> redirect(
 				array(
 					'controller' => Inflector::tableize($model_class),
@@ -167,7 +167,7 @@ class ImagesController extends AppController {
 				)
 			);
 		}
-		$this -> Session -> setFlash(__('Image was not deleted'));
+		$this -> Session -> setFlash(__('No se eliminó la imagen'), 'crud/error');
 		//$this -> redirect(array('action' => 'index'));
 		$this -> redirect(
 			array(

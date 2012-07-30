@@ -123,7 +123,7 @@ class PagesController extends AppController {
 		$this -> layout = "pages";
 		$this -> Page -> id = $id;
 		if (!$this -> Page -> exists()) {
-			throw new NotFoundException(__('Invalid page'));
+			throw new NotFoundException(__('Página no válida'));
 		}
 		$this -> set('page', $this -> Page -> read(null, $id));
 	}
@@ -190,7 +190,7 @@ class PagesController extends AppController {
 	public function admin_view($id = null) {
 		$this -> Page -> id = $id;
 		if (!$this -> Page -> exists()) {
-			throw new NotFoundException(__('Invalid page'));
+			throw new NotFoundException(__('Página no válida'));
 		}
 		$this -> set('page', $this -> Page -> read(null, $id));
 	}
@@ -204,10 +204,10 @@ class PagesController extends AppController {
 		if ($this -> request -> is('post')) {
 			$this -> Page -> create();
 			if ($this -> Page -> save($this -> request -> data)) {
-				$this -> Session -> setFlash(__('The page has been saved'));
+				$this -> Session -> setFlash(__('Se guardó la página'), 'crud/success');
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The page could not be saved. Please, try again.'));
+				$this -> Session -> setFlash(__('No se guardó la página. Por favor, intente de nuevo.'), 'crud/error');
 			}
 		}
 	}
@@ -221,14 +221,14 @@ class PagesController extends AppController {
 	public function admin_edit($id = null) {
 		$this -> Page -> id = $id;
 		if (!$this -> Page -> exists()) {
-			throw new NotFoundException(__('Invalid page'));
+			throw new NotFoundException(__('Página no válida'));
 		}
 		if ($this -> request -> is('post') || $this -> request -> is('put')) {
 			if ($this -> Page -> save($this -> request -> data)) {
-				$this -> Session -> setFlash(__('The page has been saved'));
+				$this -> Session -> setFlash(__('Se modificó la página'), 'crud/success');
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The page could not be saved. Please, try again.'));
+				$this -> Session -> setFlash(__('No se modificó la página. Por favor, intente de nuevo.'), 'crud/error');
 			}
 		} else {
 			$this -> request -> data = $this -> Page -> read(null, $id);
@@ -247,13 +247,13 @@ class PagesController extends AppController {
 		}
 		$this -> Page -> id = $id;
 		if (!$this -> Page -> exists()) {
-			throw new NotFoundException(__('Invalid page'));
+			throw new NotFoundException(__('Página no válida'));
 		}
 		if ($this -> Page -> delete()) {
-			$this -> Session -> setFlash(__('Page deleted'));
+			$this -> Session -> setFlash(__('Se eliminó la página'), 'crud/success');
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> Session -> setFlash(__('Page was not deleted'));
+		$this -> Session -> setFlash(__('No se eliminó la página'), 'crud/error');
 		$this -> redirect(array('action' => 'index'));
 	}
 

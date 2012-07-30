@@ -26,7 +26,7 @@ class BrandsController extends AppController {
 	public function view($id = null) {
 		$this -> Brand -> id = $id;
 		if (!$this -> Brand -> exists()) {
-			throw new NotFoundException(__('Invalid brand'));
+			throw new NotFoundException(__('Marca no válida'));
 		}
 		$this -> set('brand', $this -> Brand -> read(null, $id));
 	}
@@ -51,7 +51,7 @@ class BrandsController extends AppController {
 		$this -> Brand -> contain('Product');
 		$this -> Brand -> id = $id;
 		if (!$this -> Brand -> exists()) {
-			throw new NotFoundException(__('Invalid brand'));
+			throw new NotFoundException(__('Marca no válida'));
 		}
 		$this -> set('brand', $this -> Brand -> read(null, $id));
 	}
@@ -65,10 +65,10 @@ class BrandsController extends AppController {
 		if ($this -> request -> is('post')) {
 			$this -> Brand -> create();
 			if ($this -> Brand -> save($this -> request -> data)) {
-				$this -> Session -> setFlash(__('The brand has been saved'));
+				$this -> Session -> setFlash(__('Se guardó la marca'), 'crud/success');
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The brand could not be saved. Please, try again.'));
+				$this -> Session -> setFlash(__('No se guardó la marca. Por favor, intente de nuevo.'), 'crud/error');
 			}
 		}
 	}
@@ -82,14 +82,14 @@ class BrandsController extends AppController {
 	public function admin_edit($id = null) {
 		$this -> Brand -> id = $id;
 		if (!$this -> Brand -> exists()) {
-			throw new NotFoundException(__('Invalid brand'));
+			throw new NotFoundException(__('Marca no válida'));
 		}
 		if ($this -> request -> is('post') || $this -> request -> is('put')) {
 			if ($this -> Brand -> save($this -> request -> data)) {
-				$this -> Session -> setFlash(__('The brand has been saved'));
+				$this -> Session -> setFlash(__('Se modificó la marca'), 'crud/success');
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The brand could not be saved. Please, try again.'));
+				$this -> Session -> setFlash(__('No se modificó la marca. Por favor, intente de nuevo.'), 'crud/error');
 			}
 		} else {
 			$this -> request -> data = $this -> Brand -> read(null, $id);
@@ -108,13 +108,13 @@ class BrandsController extends AppController {
 		}
 		$this -> Brand -> id = $id;
 		if (!$this -> Brand -> exists()) {
-			throw new NotFoundException(__('Invalid brand'));
+			throw new NotFoundException(__('Marca no válida'));
 		}
 		if ($this -> Brand -> delete()) {
-			$this -> Session -> setFlash(__('Brand deleted'));
+			$this -> Session -> setFlash(__('Se eliminó la marca'), 'crud/success');
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> Session -> setFlash(__('Brand was not deleted'));
+		$this -> Session -> setFlash(__('No se eliminó la marca'), 'crud/error');
 		$this -> redirect(array('action' => 'index'));
 	}
 

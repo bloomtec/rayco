@@ -26,7 +26,7 @@ class ProductsController extends AppController {
 	public function view($id = null) {
 		$this -> Product -> id = $id;
 		if (!$this -> Product -> exists()) {
-			throw new NotFoundException(__('Invalid product'));
+			throw new NotFoundException(__('Producto no válido'));
 		}
 		$this -> set('product', $this -> Product -> read(null, $id));
 	}
@@ -51,7 +51,7 @@ class ProductsController extends AppController {
 		$this -> Product -> contain('Brand', 'Image', 'Subcategory');
 		$this -> Product -> id = $id;
 		if (!$this -> Product -> exists()) {
-			throw new NotFoundException(__('Invalid product'));
+			throw new NotFoundException(__('Producto no válido'));
 		}
 		$this -> set('product', $this -> Product -> read(null, $id));
 	}
@@ -65,10 +65,10 @@ class ProductsController extends AppController {
 		if ($this -> request -> is('post')) {
 			$this -> Product -> create();
 			if ($this -> Product -> save($this -> request -> data)) {
-				$this -> Session -> setFlash(__('The product has been saved'));
+				$this -> Session -> setFlash(__('Se guardó el producto'), 'crud/success');
 				$this -> redirect(array('action' => 'edit', $this -> Product -> id, true));
 			} else {
-				$this -> Session -> setFlash(__('The product could not be saved. Please, try again.'));
+				$this -> Session -> setFlash(__('No se pudo guardar el producto. Por favor, intente de nuevo.'), 'crud/error');
 			}
 		}
 		$brands = $this -> Product -> Brand -> find('list');
@@ -86,14 +86,14 @@ class ProductsController extends AppController {
 		$this -> Product -> contain('Subcategory', 'Image');
 		$this -> Product -> id = $id;
 		if (!$this -> Product -> exists()) {
-			throw new NotFoundException(__('Invalid product'));
+			throw new NotFoundException(__('Producto no válido'));
 		}
 		if ($this -> request -> is('post') || $this -> request -> is('put')) {
 			if ($this -> Product -> save($this -> request -> data)) {
-				$this -> Session -> setFlash(__('The product has been saved'));
+				$this -> Session -> setFlash(__('Se modificó el producto'), 'crud/success');
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The product could not be saved. Please, try again.'));
+				$this -> Session -> setFlash(__('No se pudo modificar el producto. Por favor, intente de nuevo.'), 'crud/error');
 			}
 		} else {
 			$this -> request -> data = $this -> Product -> read(null, $id);
@@ -115,13 +115,13 @@ class ProductsController extends AppController {
 		}
 		$this -> Product -> id = $id;
 		if (!$this -> Product -> exists()) {
-			throw new NotFoundException(__('Invalid product'));
+			throw new NotFoundException(__('Producto no válido'));
 		}
 		if ($this -> Product -> delete()) {
-			$this -> Session -> setFlash(__('Product deleted'));
+			$this -> Session -> setFlash(__('Se eliminó el producto'), 'crud/success');
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> Session -> setFlash(__('Product was not deleted'));
+		$this -> Session -> setFlash(__('No se eliminó el producto'), 'crud/error');
 		$this -> redirect(array('action' => 'index'));
 	}
 

@@ -26,7 +26,7 @@ class CategoriesController extends AppController {
 	public function view($id = null) {
 		$this -> Category -> id = $id;
 		if (!$this -> Category -> exists()) {
-			throw new NotFoundException(__('Invalid category'));
+			throw new NotFoundException(__('Categoría no válida'));
 		}
 		$this -> set('category', $this -> Category -> read(null, $id));
 	}
@@ -51,7 +51,7 @@ class CategoriesController extends AppController {
 		$this -> Category -> contain('Catalog', 'Subcategory');
 		$this -> Category -> id = $id;
 		if (!$this -> Category -> exists()) {
-			throw new NotFoundException(__('Invalid category'));
+			throw new NotFoundException(__('Categoría no válida'));
 		}
 		$this -> set('category', $this -> Category -> read(null, $id));
 	}
@@ -65,10 +65,10 @@ class CategoriesController extends AppController {
 		if ($this -> request -> is('post')) {
 			$this -> Category -> create();
 			if ($this -> Category -> save($this -> request -> data)) {
-				$this -> Session -> setFlash(__('The category has been saved'));
+				$this -> Session -> setFlash(__('Se guardó la categoría'), 'crud/success');
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The category could not be saved. Please, try again.'));
+				$this -> Session -> setFlash(__('No se guardó la categoría. Por favor, intente de nuevo.'), 'crud/error');
 			}
 		}
 		$catalogs = $this -> Category -> Catalog -> find('list');
@@ -84,14 +84,14 @@ class CategoriesController extends AppController {
 	public function admin_edit($id = null) {
 		$this -> Category -> id = $id;
 		if (!$this -> Category -> exists()) {
-			throw new NotFoundException(__('Invalid category'));
+			throw new NotFoundException(__('Categoría no válida'));
 		}
 		if ($this -> request -> is('post') || $this -> request -> is('put')) {
 			if ($this -> Category -> save($this -> request -> data)) {
-				$this -> Session -> setFlash(__('The category has been saved'));
+				$this -> Session -> setFlash(__('Se modificó la categoría'), 'crud/success');
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The category could not be saved. Please, try again.'));
+				$this -> Session -> setFlash(__('No se modificó la categoría. Por favor, intente de nuevo.'), 'crud/error');
 			}
 		} else {
 			$this -> request -> data = $this -> Category -> read(null, $id);
@@ -112,13 +112,13 @@ class CategoriesController extends AppController {
 		}
 		$this -> Category -> id = $id;
 		if (!$this -> Category -> exists()) {
-			throw new NotFoundException(__('Invalid category'));
+			throw new NotFoundException(__('Categoría no válida'));
 		}
 		if ($this -> Category -> delete()) {
-			$this -> Session -> setFlash(__('Category deleted'));
+			$this -> Session -> setFlash(__('Se eliminó la categoría'), 'crud/success');
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> Session -> setFlash(__('Category was not deleted'));
+		$this -> Session -> setFlash(__('No se eliminó la categoría'), 'crud/error');
 		$this -> redirect(array('action' => 'index'));
 	}
 

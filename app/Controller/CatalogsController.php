@@ -29,7 +29,7 @@ class CatalogsController extends AppController {
 		// INFO DEL CATALOGO
 		$this -> Catalog -> id = $id;
 		if (!$this -> Catalog -> exists()) {
-			throw new NotFoundException(__('Invalid catalog'));
+			throw new NotFoundException(__('Catálogo no válido'));
 		}
 		$this -> set('catalog', $this -> Catalog -> read(null, $id));
 		
@@ -110,7 +110,7 @@ class CatalogsController extends AppController {
 		$this -> Catalog -> contain('Category');
 		$this -> Catalog -> id = $id;
 		if (!$this -> Catalog -> exists()) {
-			throw new NotFoundException(__('Invalid catalog'));
+			throw new NotFoundException(__('Catálogo no válido'));
 		}
 		$this -> set('catalog', $this -> Catalog -> read(null, $id));
 	}
@@ -124,14 +124,14 @@ class CatalogsController extends AppController {
 	public function admin_edit($id = null) {
 		$this -> Catalog -> id = $id;
 		if (!$this -> Catalog -> exists()) {
-			throw new NotFoundException(__('Invalid catalog'));
+			throw new NotFoundException(__('Catálogo no válido'));
 		}
 		if ($this -> request -> is('post') || $this -> request -> is('put')) {
 			if ($this -> Catalog -> save($this -> request -> data)) {
-				$this -> Session -> setFlash(__('The catalog has been saved'));
+				$this -> Session -> setFlash(__('Se modificó el catálogo'), 'crud/success');
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The catalog could not be saved. Please, try again.'));
+				$this -> Session -> setFlash(__('No se modificó el catálogo. Por favor, intente de nuevo.'), 'crud/error');
 			}
 		} else {
 			$this -> request -> data = $this -> Catalog -> read(null, $id);

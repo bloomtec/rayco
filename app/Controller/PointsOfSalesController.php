@@ -26,7 +26,7 @@ class PointsOfSalesController extends AppController {
 	public function view($id = null) {
 		$this -> PointsOfSale -> id = $id;
 		if (!$this -> PointsOfSale -> exists()) {
-			throw new NotFoundException(__('Invalid points of sale'));
+			throw new NotFoundException(__('Punto de ventas no válido'));
 		}
 		$this -> set('pointsOfSale', $this -> PointsOfSale -> read(null, $id));
 	}
@@ -51,7 +51,7 @@ class PointsOfSalesController extends AppController {
 		$this -> PointsOfSale -> contain('Image');
 		$this -> PointsOfSale -> id = $id;
 		if (!$this -> PointsOfSale -> exists()) {
-			throw new NotFoundException(__('Invalid points of sale'));
+			throw new NotFoundException(__('Punto de ventas no válido'));
 		}
 		$this -> set('pointsOfSale', $this -> PointsOfSale -> read(null, $id));
 	}
@@ -65,10 +65,10 @@ class PointsOfSalesController extends AppController {
 		if ($this -> request -> is('post')) {
 			$this -> PointsOfSale -> create();
 			if ($this -> PointsOfSale -> save($this -> request -> data)) {
-				$this -> Session -> setFlash(__('The points of sale has been saved'));
+				$this -> Session -> setFlash(__('Se guardó el punto de ventas'), 'crud/success');
 				$this -> redirect(array('action' => 'edit', $this -> PointsOfSale -> id, true));
 			} else {
-				$this -> Session -> setFlash(__('The points of sale could not be saved. Please, try again.'));
+				$this -> Session -> setFlash(__('No se pudo guardar el punto de ventas. Por favor, intente de nuevo.'), 'crud/error');
 			}
 		}
 	}
@@ -83,14 +83,14 @@ class PointsOfSalesController extends AppController {
 		$this -> PointsOfSale -> contain('Image');
 		$this -> PointsOfSale -> id = $id;
 		if (!$this -> PointsOfSale -> exists()) {
-			throw new NotFoundException(__('Invalid points of sale'));
+			throw new NotFoundException(__('Punto de ventas no válido'));
 		}
 		if ($this -> request -> is('post') || $this -> request -> is('put')) {
 			if ($this -> PointsOfSale -> save($this -> request -> data)) {
-				$this -> Session -> setFlash(__('The points of sale has been saved'));
+				$this -> Session -> setFlash(__('Se modificó el punto de ventas'), 'crud/success');
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The points of sale could not be saved. Please, try again.'));
+				$this -> Session -> setFlash(__('No se pudo modificar el punto de ventas. Por favor, intente de nuevo.'), 'crud/error');
 			}
 		} else {
 			$this -> request -> data = $this -> PointsOfSale -> read(null, $id);
@@ -110,13 +110,13 @@ class PointsOfSalesController extends AppController {
 		}
 		$this -> PointsOfSale -> id = $id;
 		if (!$this -> PointsOfSale -> exists()) {
-			throw new NotFoundException(__('Invalid points of sale'));
+			throw new NotFoundException(__('Punto de ventas no válido'));
 		}
 		if ($this -> PointsOfSale -> delete()) {
-			$this -> Session -> setFlash(__('Points of sale deleted'));
+			$this -> Session -> setFlash(__('Se eliminó el punto de ventas'), 'crud/success');
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> Session -> setFlash(__('Points of sale was not deleted'));
+		$this -> Session -> setFlash(__('No se eliminó el punto de ventas'), 'crud/error');
 		$this -> redirect(array('action' => 'index'));
 	}
 

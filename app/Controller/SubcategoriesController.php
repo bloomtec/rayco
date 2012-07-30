@@ -26,7 +26,7 @@ class SubcategoriesController extends AppController {
 	public function view($id = null) {
 		$this -> Subcategory -> id = $id;
 		if (!$this -> Subcategory -> exists()) {
-			throw new NotFoundException(__('Invalid subcategory'));
+			throw new NotFoundException(__('Subcategoría no válida'));
 		}
 		$this -> set('subcategory', $this -> Subcategory -> read(null, $id));
 	}	
@@ -51,7 +51,7 @@ class SubcategoriesController extends AppController {
 		$this -> Subcategory -> contain('Category', 'Product');
 		$this -> Subcategory -> id = $id;
 		if (!$this -> Subcategory -> exists()) {
-			throw new NotFoundException(__('Invalid subcategory'));
+			throw new NotFoundException(__('Subcategoría no válida'));
 		}
 		$this -> set('subcategory', $this -> Subcategory -> read(null, $id));
 	}
@@ -65,10 +65,10 @@ class SubcategoriesController extends AppController {
 		if ($this -> request -> is('post')) {
 			$this -> Subcategory -> create();
 			if ($this -> Subcategory -> save($this -> request -> data)) {
-				$this -> Session -> setFlash(__('The subcategory has been saved'));
+				$this -> Session -> setFlash(__('Se guardó la subcategoría'), 'crud/success');
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The subcategory could not be saved. Please, try again.'));
+				$this -> Session -> setFlash(__('No se pudo guardar la subcategoría. Por favor, intente de nuevo.'), 'crud/error');
 			}
 		}
 		$categories = $this -> Subcategory -> Category -> find('list');
@@ -86,14 +86,14 @@ class SubcategoriesController extends AppController {
 		$this -> Subcategory -> contain('Product');
 		$this -> Subcategory -> id = $id;
 		if (!$this -> Subcategory -> exists()) {
-			throw new NotFoundException(__('Invalid subcategory'));
+			throw new NotFoundException(__('Subcategoría no válida'));
 		}
 		if ($this -> request -> is('post') || $this -> request -> is('put')) {
 			if ($this -> Subcategory -> save($this -> request -> data)) {
-				$this -> Session -> setFlash(__('The subcategory has been saved'));
+				$this -> Session -> setFlash(__('Se modificó la subcategoría'), 'crud/success');
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The subcategory could not be saved. Please, try again.'));
+				$this -> Session -> setFlash(__('No se pudo modificar la subcategoría. Por favor, intente de nuevo.'), 'crud/error');
 			}
 		} else {
 			$this -> request -> data = $this -> Subcategory -> read(null, $id);
@@ -115,13 +115,13 @@ class SubcategoriesController extends AppController {
 		}
 		$this -> Subcategory -> id = $id;
 		if (!$this -> Subcategory -> exists()) {
-			throw new NotFoundException(__('Invalid subcategory'));
+			throw new NotFoundException(__('Subcategoría no válida'));
 		}
 		if ($this -> Subcategory -> delete()) {
-			$this -> Session -> setFlash(__('Subcategory deleted'));
+			$this -> Session -> setFlash(__('Se eliminó la subcategoría'), 'crud/success');
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> Session -> setFlash(__('Subcategory was not deleted'));
+		$this -> Session -> setFlash(__('No se eliminó la subcategoría'), 'crud/error');
 		$this -> redirect(array('action' => 'index'));
 	}
 
