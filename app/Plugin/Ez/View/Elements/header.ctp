@@ -20,52 +20,55 @@
 		<?php
 		echo $this -> Html -> link('Catálogos', array('plugin' => false, 'controller' => 'catalogs', 'action' => 'index'));
 		?>
+		<ul>
+			<li>
+			<?php
+			echo $this -> Html -> link('Categorías', array('plugin' => false, 'controller' => 'categories', 'action' => 'index'));
+			?>
+				<ul>
+					<li>
+						<?php
+						echo $this -> Html -> link('Agregar Categoría', array('plugin' => false, 'controller' => 'categories', 'action' => 'add'));
+						?>
+					</li>
+				</ul>
+			</li>
+			<!-- SUBCATEGORÍAS -->
+			<li>
+				<?php
+				echo $this -> Html -> link('Subcategorías', array('plugin' => false, 'controller' => 'subcategories', 'action' => 'index'));
+				?>
+				<ul>
+					<li>
+						<?php
+						echo $this -> Html -> link('Agregar Subcategoría', array('plugin' => false, 'controller' => 'subcategories', 'action' => 'add'));
+						?>
+					</li>
+				</ul>
+			</li>
+			<!-- MARCAS -->
+			<li>
+				<?php
+				echo $this -> Html -> link('Marcas', array('plugin' => false, 'controller' => 'brands', 'action' => 'index'));
+				?>
+			</li>
+			<!-- PRODUCTOS -->
+			<li>
+				<?php
+				echo $this -> Html -> link('Productos', array('plugin' => false, 'controller' => 'products', 'action' => 'index'));
+				?>
+				<ul>
+					<li>
+						<?php
+						echo $this -> Html -> link('Agregar Producto', array('plugin' => false, 'controller' => 'products', 'action' => 'add'));
+						?>
+					</li>
+				</ul>
+			</li>
+		</ul>
 	</li>
 	<!-- CATEGORÍAS -->
-	<li>
-		<?php
-		echo $this -> Html -> link('Categorías', array('plugin' => false, 'controller' => 'categories', 'action' => 'index'));
-		?>
-		<ul>
-			<li>
-				<?php
-				echo $this -> Html -> link('Agregar Categoría', array('plugin' => false, 'controller' => 'categories', 'action' => 'add'));
-				?>
-			</li>
-		</ul>
-	</li>
-	<!-- SUBCATEGORÍAS -->
-	<li>
-		<?php
-		echo $this -> Html -> link('Subcategorías', array('plugin' => false, 'controller' => 'subcategories', 'action' => 'index'));
-		?>
-		<ul>
-			<li>
-				<?php
-				echo $this -> Html -> link('Agregar Subcategoría', array('plugin' => false, 'controller' => 'subcategories', 'action' => 'add'));
-				?>
-			</li>
-		</ul>
-	</li>
-	<!-- MARCAS -->
-	<li>
-		<?php
-		echo $this -> Html -> link('Marcas', array('plugin' => false, 'controller' => 'brands', 'action' => 'index'));
-		?>
-	</li>
-	<!-- PRODUCTOS -->
-	<li>
-		<?php
-		echo $this -> Html -> link('Productos', array('plugin' => false, 'controller' => 'products', 'action' => 'index'));
-		?>
-		<ul>
-			<li>
-				<?php
-				echo $this -> Html -> link('Agregar Producto', array('plugin' => false, 'controller' => 'products', 'action' => 'add'));
-				?>
-			</li>
-		</ul>
-	</li>
+	
 	<!-- PUNTOS DE VENTAS -->
 	<li>
 		<?php

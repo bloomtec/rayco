@@ -30,7 +30,7 @@ body {
 	margin: 0;
 }
 a {
-	color: #E62B7C;
+	color: #073F87;
 	text-decoration: underline;
 	font-weight: bold;
 }
@@ -52,7 +52,7 @@ h1 {
 }
 h2 {
 	background: #fff;
-	color: #E62B7C;
+	color: #073F87;
 	font-family: 'Gill Sans', 'lucida grande', helvetica, arial, sans-serif;
 	font-size: 190%;
 }
@@ -252,7 +252,7 @@ th {
 	border-bottom: 2px solid #555;
 	text-align: left;
 	padding: 4px;
-	color:#E62B7C;
+	color:#073F87;
 }
 th a {
 	display: block;
@@ -374,7 +374,7 @@ fieldset {
 	padding: 16px 10px;
 }
 fieldset legend {
-	color: #E62B7C;
+	color: #073F87;
 	font-size: 160%;
 	font-weight: bold;
 }
@@ -462,7 +462,7 @@ input[type=submit] {
 	width: auto;
 }
 form .submit input[type=submit] {
-	background: #E62B7C;
+	background: #073F87;
 /*	background-image: -webkit-gradient(linear, left top, left bottom, from(#76BF6B), to(#3B8230));
 	background-image: -webkit-linear-gradient(top, #76BF6B, #3B8230);
 	background-image: -moz-linear-gradient(top, #76BF6B, #3B8230);*/
@@ -472,7 +472,7 @@ form .submit input[type=submit] {
 	padding: 8px 10px;
 }
 form .submit input[type=submit]:hover {
-	background: #EA589A;;
+	background: #0D6CD3;;
 }
 /* Form errors */
 form .error {
@@ -604,7 +604,7 @@ p.error em {
 input[type=submit], .actions ul li a, .actions a {
 	font-weight: normal;
 	padding: 4px 8px;
-	background: #E62B7C;
+	background: #073F87;
 	/*
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#fefefe), to(#dcdcdc));
 	background-image: -webkit-linear-gradient(top, #fefefe, #dcdcdc);
@@ -629,7 +629,7 @@ input[type=submit], .actions ul li a, .actions a {
 	text-align:center;
 }
 .actions ul li a:hover, .actions a:hover {
-	background: #EA589A;
+	background: #0D6CD3;
 	border-color: #acacac;
 	text-decoration: none;
 }

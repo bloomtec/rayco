@@ -54,7 +54,6 @@ ul.sf-menu li li li.sfHover ul {
 
 /*** DEMO SKIN ***/
 .sf-menu {
-	width:78%;
 	float:right;
 	margin-bottom:	0;
 }
@@ -68,17 +67,17 @@ ul.sf-menu li li li.sfHover ul {
 	color:			white;
 }
 .sf-menu li {
-	background:		#E62B7C;
+	background:		#073F87;
 }
 .sf-menu li li {
-	background:		#E62B7C;
+	background:		#073F87;
 }
 .sf-menu li li li {
-	background:		#E62B7C;
+	background:		#073F87;
 }
 .sf-menu li:hover, .sf-menu li.sfHover,
 .sf-menu a:focus, .sf-menu a:hover, .sf-menu a:active {
-	background:		#EA589A;
+	background:		#0D6CD3;
 	outline:		0;
 }
 
