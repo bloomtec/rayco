@@ -59,26 +59,45 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 </script>
 </head>
 <body class="<?php echo $this -> action;?>">
-	<div id="container">
+	<div class="main_container">
 		<?php echo $this -> element('header');?>
 		<div id="content">
-
+			<img class="solapa_content" src="/img/solapa_content.png"/>
+			<div class="nuestros_productos">
+				<h1>Conozca nuestros productos:</h1>
+				<ul>
+					<li><a href="#">RAYCO AUTOMOTRIZ</a></li>
+					<li><a href="#">RAYLUJOS AUTOMOTRIZ</a></li>
+				</ul>	
+			</div>
+			<div style="clear:both;"></div>
+			<div class="marcas_wrapper">
+				<div>
+					<img src="/img/rayco.png">
+					<p>
+						Se llama luz (del latín lux, lucis) a la parte de la radiación electromagnética que puede ser percibida por el ojo humano....
+					</p>
+					<a href="#">VER PRODUCTOS</a>
+					<img class="solapa" src="/img/solapa_marcas.png">
+				</div>
+				<div>
+					<img src="/img/raylujos.png">
+					<p>
+						Se llama luz (del latín lux, lucis) a la parte de la radiación electromagnética que puede ser percibida por el ojo humano....
+					</p>
+					<a href="#">VER PRODUCTOS</a>
+					<img class="solapa" src="/img/solapa_marcas.png">
+				</div>
+				<div style="clear:both;border:none;padding:0; height:0;"></div>
+			</div>
+			<div style="clear:both;"></div>
 			<?php echo $this->Session->flash(); ?>
 			<?php echo $this->fetch('content'); ?>
 		</div>
+		<?php echo $this -> element('footer');?>
 	</div>
-	<?php echo $this -> element('footer');?>
+	
 	<?php echo $this->element('sql_dump'); ?>
 </body>
-<?php if(!Configure::read('debug')):?>
-<!--Start of Zopim Live Chat Script-->
-<script type="text/javascript">
-window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
-d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
-_.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
-$.src='//cdn.zopim.com/?RydcgQ0EvdOO6ZP5TRy6z7UuI5kGyn9f';z.t=+new Date;$.
-type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
-</script>
-<!--End of Zopim Live Chat Script-->
-<?php endif;?>
+
 </html>
