@@ -1,6 +1,9 @@
 body{
 	background: url(/img/body_bg.png) repeat-x top left #fff;
 }
+a{
+	text-decoration: none;
+}
 .main_container{
 	margin: 0 auto;
 	width: 952px;
@@ -214,4 +217,91 @@ body{
 	margin-top: 16px;
 	margin-left: 18px;
 	text-decoration: none;
+}
+.seccion_izquierda{
+	float: left;
+	width: 218px;
+	padding-left: 15px;
+	padding-top: 20px;
+	margin-top: 8px;
+}
+.seccion_izquierda a{
+	color: #073f87;
+	font-size: 18px;
+	text-decoration: none;
+	display: block;
+	margin-bottom: 20px;
+}
+.seccion_izquierda a.current, .nuestros_productos a.current{
+	font-weight: bold;
+}
+.seccion_derecha{
+	float: right;
+	padding-top: 20px;
+	padding-left: 35px;
+	width: 679px;
+	background: url(/img/seccion_derecha.png) top left repeat-y #fff;
+	margin-top: 8px;
+	position: relative;
+}
+.seccion_derecha h2{
+	color: #f16822;
+	font-size: 18px;
+	font-weight: normal;
+	margin-bottom: 8px;
+}
+.seccion_derecha .paginacion{
+	float: right;
+	width: 322px;
+	margin-bottom: 15px;
+}
+.seccion_derecha .paginacion p{
+	color: #58595b;
+	font-size: 16px;
+}
+.seccion_derecha .paginacion a{
+	text-decoration: none;
+	color: #58595b;
+}
+.seccion_derecha .paginacion a.current{
+	color: #073f87;
+}
+.seccion_derecha .productos{
+	width: 582px;
+	margin: 0 auto;
+}
+.seccion_derecha .productos div{
+	float: left;
+	width: 182px;
+	margin-right: 17px;
+	text-align: center;
+	margin-bottom: 35px;
+}
+.seccion_derecha .productos div.tercero{
+	margin-right: 0;
+}
+.seccion_derecha .productos div img{
+	border: 1px solid #ecedee;
+	margin-bottom: 16px;
+}
+.seccion_derecha .productos div h3{
+	color: #073f87;
+	font-size: 16px;
+}
+.prev, .next{
+	display: block;
+	position: absolute;
+	width: 26px;
+	height: 26px;
+	top: 50%;
+	margin-top: -13px;
+	cursor: pointer;
+}
+.prev{
+	left: 32px;
+	background: url(/img/prev.png) no-repeat;
+}
+.next{
+	right: 22px;
+	background: url(/img/next.png) no-repeat;
 }

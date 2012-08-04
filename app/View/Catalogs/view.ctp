@@ -1,101 +1,78 @@
-<div class="catalogs view">
-	<?php echo $this -> Form -> create('Filtro'); ?>
-	<table id="FilterTable">
-		<tbody>
-			<tr>
-				<td><?php echo $this -> Form -> input('Filtro.categories', array('label' => 'Categoría', 'type' => 'select', 'empty' => 'Seleccione...')); ?></td>
-				<td><?php echo $this -> Form -> input('Filtro.subcategories', array('label' => 'Subcategoría', 'type' => 'select', 'empty' => 'Seleccione...')); ?></td>
-				<td><?php echo $this -> Form -> submit('Filtrar'); ?></td>
-				<?php if((isset($this -> request -> data['Filtro']['categories']) && $this -> request -> data['Filtro']['categories']) || (isset($this -> request -> data['Filtro']['subcategories']) && $this -> request -> data['Filtro']['subcategories'])) : ?>
-				<td class="actions"><a href="/catalogs/view/<?php echo $catalog['Catalog']['id']; ?>">Quitar Filtros</a></td>
-				<?php endif; ?>
-			</tr>
-		</tbody>
-	</table>
-	<?php echo $this -> Form -> end(); ?>
-	<?php debug($products); ?>
-<!--
-<h2><?php  echo __('Catalog');?></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($catalog['Catalog']['id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Image'); ?></dt>
-		<dd>
-			<?php echo h($catalog['Catalog']['image']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Nombre'); ?></dt>
-		<dd>
-			<?php echo h($catalog['Catalog']['nombre']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Descripcion'); ?></dt>
-		<dd>
-			<?php echo h($catalog['Catalog']['descripcion']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created'); ?></dt>
-		<dd>
-			<?php echo h($catalog['Catalog']['created']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Modified'); ?></dt>
-		<dd>
-			<?php echo h($catalog['Catalog']['modified']); ?>
-			&nbsp;
-		</dd>
-	</dl>
--->
-</div>
-<div class="actions">
-	<h3><?php echo __('Acciones'); ?></h3>
+<img class="solapa_content" src="/img/solapa_content.png"/>
+<div class="nuestros_productos">
+	<h1>Conozca nuestros productos:</h1>
 	<ul>
-		<li><?php echo $this->Html->link(__('Catalogos'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('Categorías'), array('controller' => 'categories', 'action' => 'index')); ?> </li>
+		<li>
+			<a href="#">RAYCO AUTOMOTRIZ</a>
+		</li>
+		<li>
+			<a class="current" href="#">RAYLUJOS AUTOMOTRIZ</a>
+		</li>
 	</ul>
 </div>
-<!--
-<div class="related">
-	<h3><?php echo __('Related Categories');?></h3>
-	<?php if (!empty($catalog['Category'])):?>
-	<table cellpadding = "0" cellspacing = "0">
-	<tr>
-		<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('Catalog Id'); ?></th>
-		<th><?php echo __('Nombre'); ?></th>
-		<th><?php echo __('Descripcion'); ?></th>
-		<th><?php echo __('Created'); ?></th>
-		<th><?php echo __('Updated'); ?></th>
-		<th class="actions"><?php echo __('Actions');?></th>
-	</tr>
-	<?php
-		$i = 0;
-		foreach ($catalog['Category'] as $category): ?>
-		<tr>
-			<td><?php echo $category['id'];?></td>
-			<td><?php echo $category['catalog_id'];?></td>
-			<td><?php echo $category['nombre'];?></td>
-			<td><?php echo $category['descripcion'];?></td>
-			<td><?php echo $category['created'];?></td>
-			<td><?php echo $category['updated'];?></td>
-			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'categories', 'action' => 'view', $category['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'categories', 'action' => 'edit', $category['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'categories', 'action' => 'delete', $category['id']), null, __('Are you sure you want to delete # %s?', $category['id'])); ?>
-			</td>
-		</tr>
-	<?php endforeach; ?>
-	</table>
-	<?php endif; ?>
-
-	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('New Category'), array('controller' => 'categories', 'action' => 'add'));?> </li>
-		</ul>
-	</div>
-
+<div style="clear:both;"></div>
+<div class="seccion_izquierda">
+	
+	<ul>
+		<li><a class="current" href="#">Nombre Subcategoría 1</a></li>
+		<li><a href="#">Nombre Subcategoría 2</a></li>
+		<li><a href="#">Nombre Subcategoría 3</a></li>
+		<li><a href="#">Nombre Subcategoría 4</a></li>
+		<li><a href="#">Nombre Subcategoría 5</a></li>
+	</ul>
 </div>
--->
+<div class="seccion_derecha">
+	<a class="prev"></a>
+	<a class="next"></a>
+	<h2>Nombre Subcategoría 1</h2>
+	<div class="paginacion">
+		<p>
+			6 Productos   |  
+			<a href="#">4</a> -
+			<a class="current" href="#">5</a> - 
+			<a href="#">6</a> 
+			<a href="#">></a>   
+			<a href="#">>></a> | 
+			<a href="#">Ver todos</a>
+		</p>
+	</div>
+	<div style="clear: both;"></div>
+	<div class="productos">
+		<div>
+			<a href="#"><img src="/img/producto.jpg" /></a>
+			<a href="#"><h3>Nombre Producto</h3></a>
+		</div>
+		<div>
+			<a href="#"><img src="/img/producto.jpg" /></a>
+			<a href="#"><h3>Nombre Producto</h3></a>
+		</div>
+		<div class="tercero">
+			<a href="#"><img src="/img/producto.jpg" /></a>
+			<a href="#"><h3>Nombre Producto</h3></a>
+		</div>
+		<div>
+			<a href="#"><img src="/img/producto.jpg" /></a>
+			<a href="#"><h3>Nombre Producto</h3></a>
+		</div>
+		<div>
+			<a href="#"><img src="/img/producto.jpg" /></a>
+			<a href="#"><h3>Nombre Producto</h3></a>
+		</div>
+		<div class="tercero">
+			<a href="#"><a href="#"><img src="/img/producto.jpg" /></a></a>
+			<a href="#"><a href="#"><h3>Nombre Producto</h3></a></a>
+		</div>
+	</div>
+	<div class="paginacion">
+		<p>
+			6 Productos   |  
+			<a href="#">4</a> -
+			<a class="current" href="#">5</a> - 
+			<a href="#">6</a> 
+			<a href="#">></a>   
+			<a href="#">>></a> | 
+			<a href="#">Ver todos</a>
+		</p>
+	</div>
+</div>
+<div style="clear:both;"></div>

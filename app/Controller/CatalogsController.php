@@ -24,7 +24,7 @@ class CatalogsController extends AppController {
 	 * @return void
 	 */
 	public function view($id = null) {
-		$this -> layout = 'Ez.default';
+		$this -> layout = 'default';
 		//$this -> Catalog -> contain('Category', 'Category.Subcategory', 'Category.Subcategory.Product');
 		// INFO DEL CATALOGO
 		$this -> Catalog -> id = $id;
