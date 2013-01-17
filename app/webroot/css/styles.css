@@ -225,12 +225,26 @@ a{
 	padding-top: 20px;
 	margin-top: 8px;
 }
+.seccion_izquierda ul li{
+	margin-bottom: 20px;
+}
+.seccion_izquierda ul ul li{
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
 .seccion_izquierda a{
 	color: #073f87;
 	font-size: 18px;
 	text-decoration: none;
 	display: block;
-	margin-bottom: 20px;
+
+}
+.seccion_izquierda ul ul{
+	padding-left: 1em;
+}
+.seccion_izquierda ul ul a{
+	font-size: 14px;
+
 }
 .seccion_izquierda a.current, .nuestros_productos a.current{
 	font-weight: bold;

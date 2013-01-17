@@ -31,6 +31,7 @@ class CatalogsController extends AppController {
 		if (!$this -> Catalog -> exists()) {
 			throw new NotFoundException(__('Catálogo no válido'));
 		}
+		$this -> Session -> write('catalog',$id); // PARA CONTROL EN LAS VITAS
 		$this -> set('catalog', $this -> Catalog -> read(null, $id));
 		
 		// PAGINADO DE PRODUCTOS

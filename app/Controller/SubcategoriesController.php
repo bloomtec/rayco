@@ -17,6 +17,15 @@ class SubcategoriesController extends AppController {
 		$this -> set('subcategories', $this -> paginate());
 	}
 
+	public function get($category = null){
+		if($category){
+			return $this -> Subcategory -> find('list',array('conditions'=>array('category_id'=>$category))); 
+		}else{
+			return $this -> Subcategory -> find('list'); 
+		}
+		
+	}
+
 	/**
 	 * view method
 	 *

@@ -1,9 +1,11 @@
 <div class="catalogs index">
-	<h2><?php echo __('Catalogs'); ?></h2>
+	<h2><?php echo __('Catalogos'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 		<th><?php echo $this -> Paginator -> sort('nombre'); ?></th>
+		<?php /*
 		<th><?php echo $this -> Paginator -> sort('image', 'Imagen'); ?></th>
+		*/?>
 		<th><?php echo $this -> Paginator -> sort('descripcion', 'Descripción'); ?></th>
 		<th class="actions"><?php echo __('Acciones'); ?></th>
 	</tr>
@@ -11,11 +13,11 @@
 	foreach ($catalogs as $catalog): ?>
 	<tr>
 		<td><?php echo h($catalog['Catalog']['nombre']); ?>&nbsp;</td>
-		<td>
+		<?php /*<td>
 			<?php //echo h($catalog['Catalog']['image']); ?>
 			<img src="/img/uploads/100x100/<?php echo $catalog['Catalog']['image']; ?>" />
 			&nbsp;
-		</td>
+		</td>*/?>
 		<td><?php echo h($catalog['Catalog']['descripcion']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this -> Html -> link(__('Ver'), array('action' => 'view', $catalog['Catalog']['id'])); ?>

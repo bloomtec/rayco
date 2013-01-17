@@ -32,7 +32,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	<meta property="fb:app_id" content="157362437721922" />
 	<?php endif; */ ?>
 	<title>
-		<?php echo 'PriceShoes'?> :: 
+		<?php echo 'Rayco Automotriz'?> :: 
 		<?php echo $title_for_layout; ?>
 	</title>
 	<?php

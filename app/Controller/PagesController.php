@@ -86,38 +86,6 @@ class PagesController extends AppController {
 
 	}
 	
-	public function resumenCarrito(){
-		$this -> layout="ajax";
-	}
-	public function resumenFavoritos(){
-		$this -> layout="ajax";
-		
-	}
-	public function registro() {
-		/*$this -> redirect(
-			array(
-				'plugin' => 'user_control',
-				'controller' => 'users',
-				'action' => 'register'
-			)
-		);*/
-		$this -> redirect('/registro');
-	}
-	
-	public function carrito(){
-	
-	}
-	public function favoritos(){
-	
-	}
-	public function tablaFavoritos(){
-
-		$this -> layout="ajax";
-	}
-	
-	public function tablaCarrito(){
-		$this -> layout="ajax";
-	}
 	
 	public function view($id = null) {
 		$this -> layout = "pages";

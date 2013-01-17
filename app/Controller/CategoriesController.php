@@ -17,6 +17,15 @@ class CategoriesController extends AppController {
 		$this -> set('categories', $this -> paginate());
 	}
 
+	public function get($catalog = null){
+		if($catalog){
+			return $this -> Category -> find('list',array('conditions'=>array('catalog_id'=>$catalog))); 
+		}else{
+			return $this -> Category -> find('list'); 
+		}
+		
+	}
+
 	/**
 	 * view method
 	 *

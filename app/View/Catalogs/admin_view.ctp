@@ -6,12 +6,14 @@
 			<?php echo h($catalog['Catalog']['nombre']); ?>
 			&nbsp;
 		</dd>
+		<?php /*
 		<dt><?php echo __('Imagen'); ?></dt>
+		
 		<dd>
 			<?php echo h($catalog['Catalog']['image']); ?>
 			&nbsp;
 		</dd>
-		
+		*/ ?> 
 		<dt><?php echo __('Descripción'); ?></dt>
 		<dd>
 			<?php echo h($catalog['Catalog']['descripcion']); ?>

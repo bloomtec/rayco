@@ -1,26 +1,6 @@
-<img class="solapa_content" src="/img/solapa_content.png"/>
-<div class="nuestros_productos">
-	<h1>Conozca nuestros productos:</h1>
-	<ul>
-		<li>
-			<a href="#">RAYCO AUTOMOTRIZ</a>
-		</li>
-		<li>
-			<a class="current" href="#">RAYLUJOS AUTOMOTRIZ</a>
-		</li>
-	</ul>
-</div>
+<?php echo $this -> element('catalogos');?>
 <div style="clear:both;"></div>
-<div class="seccion_izquierda">
-	
-	<ul>
-		<li><a class="current" href="#">Nombre Subcategoría 1</a></li>
-		<li><a href="#">Nombre Subcategoría 2</a></li>
-		<li><a href="#">Nombre Subcategoría 3</a></li>
-		<li><a href="#">Nombre Subcategoría 4</a></li>
-		<li><a href="#">Nombre Subcategoría 5</a></li>
-	</ul>
-</div>
+<?php echo $this -> element('seccion-izquierda',array('catalogId'=>$catalog['Catalog']['id'])); ?>
 <div class="seccion_derecha">
 	<a class="prev"></a>
 	<a class="next"></a>

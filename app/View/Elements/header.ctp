@@ -1,5 +1,5 @@
 <div class="header">
-	<a class="logo">
+	<a class="logo" href="/">
 		<img src="/img/logo.png" />
 	</a>
 	<div class="social">

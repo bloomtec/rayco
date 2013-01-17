@@ -183,7 +183,7 @@ class User extends UserControlAppModel {
 	 * 
 	 * @return true o false acorde si se puede o no guardar la información
 	 */
-	public function beforeSave() {
+	public function beforeSave($options = array()) {
 		/*if(isset($this -> data['User']['id']) && !isset($this -> data['User']['role_id'])) {
 			$user = $this -> read(null, $this -> data['User']['id']);
 			if(isset($user['User']['role_id']) && !empty($user['User']['role_id'])) {
