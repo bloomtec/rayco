@@ -18,32 +18,14 @@
 	</div>
 	<div style="clear: both;"></div>
 	<div class="productos">
+		<?php foreach ($products as  $product): ?>
 		<div>
-			<a href="#"><img src="/img/producto.jpg" /></a>
-			<a href="#"><h3>Nombre Producto</h3></a>
+			<a href="/products/view/<?php echo $product['Product']['id'] ?>"><img src="/img/uploads/215x215/<?php echo $product['Product']['image']?>" /></a>
+			<a href="/products/view/<?php echo $product['Product']['id'] ?>"><h3>Nombre Producto</h3></a>
 		</div>
-		<div>
-			<a href="#"><img src="/img/producto.jpg" /></a>
-			<a href="#"><h3>Nombre Producto</h3></a>
-		</div>
-		<div class="tercero">
-			<a href="#"><img src="/img/producto.jpg" /></a>
-			<a href="#"><h3>Nombre Producto</h3></a>
-		</div>
-		<div>
-			<a href="#"><img src="/img/producto.jpg" /></a>
-			<a href="#"><h3>Nombre Producto</h3></a>
-		</div>
-		<div>
-			<a href="#"><img src="/img/producto.jpg" /></a>
-			<a href="#"><h3>Nombre Producto</h3></a>
-		</div>
-		<div class="tercero">
-			<a href="#"><a href="#"><img src="/img/producto.jpg" /></a></a>
-			<a href="#"><a href="#"><h3>Nombre Producto</h3></a></a>
-		</div>
+	<?php endforeach; ?>
 	</div>
-	<div class="paginacion">
+	<div class="paginacion" style="clear:left;">
 		<p>
 			6 Productos   |  
 			<a href="#">4</a> -

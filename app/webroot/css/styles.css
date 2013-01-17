@@ -287,7 +287,7 @@ a{
 .seccion_derecha .productos div{
 	float: left;
 	width: 182px;
-	margin-right: 17px;
+	margin-right: 12px;
 	text-align: center;
 	margin-bottom: 35px;
 }
@@ -297,6 +297,7 @@ a{
 .seccion_derecha .productos div img{
 	border: 1px solid #ecedee;
 	margin-bottom: 16px;
+	width: 182px;
 }
 .seccion_derecha .productos div h3{
 	color: #073f87;
