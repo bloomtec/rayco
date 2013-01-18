@@ -29,6 +29,9 @@ class ProductsController extends AppController {
 			throw new NotFoundException(__('Producto no válido'));
 		}
 		$this -> set('product', $this -> Product -> read(null, $id));
+		$this -> set('catalog', $this -> Session -> read('catalog'));
+		$this -> set('referer', $this -> referer());
+		$this -> set('previous_section', $this -> Session -> read('previous_section'));
 	}
 	
 	/**

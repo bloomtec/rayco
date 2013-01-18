@@ -41,19 +41,26 @@ class CatalogsController extends AppController {
 		$categories = array();
 		$subcategories = array();
 		$products = array();
+		$products_title = '';
 		
 		if(isset($this -> passedArgs['subcategory'])) {
 			//debug('subcategoria');
 			$categories[$this -> passedArgs['category']] = $this -> passedArgs['category'];
 			$subcategories[$this -> passedArgs['subcategory']] = $this -> passedArgs['subcategory'];
+			$subcategory = $this -> Catalog -> Category -> Subcategory -> read(null, $this -> passedArgs['subcategory']);
+			$products_title = $subcategory['Subcategory']['nombre'];
 		} elseif(isset($this -> passedArgs['category'])) {
 			//debug('categoria');
 			$categories[$this -> passedArgs['category']] = $this -> passedArgs['category'];
 			$subcategories = $this -> Catalog -> Category -> Subcategory -> find('list', array('fields' => array('Subcategory.id'), 'conditions' => array('Subcategory.category_id' => $categories)));
+			$category = $this -> Catalog -> Category -> read(null, $this -> passedArgs['category']);
+			$products_title = $category['Category']['nombre'];
 		} elseif(isset($this -> passedArgs['0'])) {
 			//debug('catalogo');
 			$categories = $this -> Catalog -> Category -> find('list', array('fields' => array('Category.id'), 'conditions' => array('Category.catalog_id' => $this -> passedArgs['0'])));
 			$subcategories = $this -> Catalog -> Category -> Subcategory -> find('list', array('fields' => array('Subcategory.id'), 'conditions' => array('Subcategory.category_id' => $categories)));
+			$catalog = $this -> Catalog -> read(null, $this -> passedArgs['0']);
+			$products_title = $catalog['Catalog']['nombre'];
 		}
 		
 		$products = $this -> Product -> ProductsSubcategory -> find('list', array('fields' => array('ProductsSubcategory.product_id'), 'conditions' => array('ProductsSubcategory.subcategory_id' => $subcategories)));
@@ -65,6 +72,8 @@ class CatalogsController extends AppController {
 		);
 		
 		$this -> set('products', $this -> paginate('Product'));
+		$this -> set('products_title', $products_title);
+		$this -> Session -> write('previous_section', $products_title);
 	}
 
 	/**
