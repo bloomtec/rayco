@@ -13,7 +13,12 @@ class SubcategoriesController extends AppController {
 	 * @return void
 	 */
 	public function index() {
-		$this -> Subcategory -> recursive = 0;
+		$this -> Subcategory -> contain('Category');
+		$this -> paginate = array(
+			'conditions' => array(
+				'Subcategory.nombre <>' => 'empty'
+			)
+		);
 		$this -> set('subcategories', $this -> paginate());
 	}
 
@@ -47,6 +52,11 @@ class SubcategoriesController extends AppController {
 	 */
 	public function admin_index() {
 		$this -> Subcategory -> contain('Category');
+		$this -> paginate = array(
+			'conditions' => array(
+				'Subcategory.nombre <>' => 'empty'
+			)
+		);
 		$this -> set('subcategories', $this -> paginate());
 	}
 
