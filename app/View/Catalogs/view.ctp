@@ -2,6 +2,9 @@
 <div style="clear:both;"></div>
 <?php echo $this -> element('seccion-izquierda',array('catalogId'=>$catalog['Catalog']['id'])); ?>
 <div class="seccion_derecha">
+	<?php if($busqueda) : ?>
+	<div>Resultado de la busqueda</div>
+	<?php endif; ?>
 	<!--<a class="prev"></a>
 	<a class="next"></a>-->
 	<?php echo $this -> Paginator->prev(__(''), array(), null, array('class' => 'prev disabled')); ?>
