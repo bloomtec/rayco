@@ -51,7 +51,7 @@ class ProductsController extends AppController {
 	 * @return void
 	 */
 	public function admin_view($id = null) {
-		$this -> Product -> contain('Brand', 'Image', 'Subcategory');
+		$this -> Product -> contain('Brand', 'Image', 'Subcategory', 'Subcategory.nombre <> "empty"');
 		$this -> Product -> id = $id;
 		if (!$this -> Product -> exists()) {
 			throw new NotFoundException(__('Producto no válido'));
@@ -75,8 +75,17 @@ class ProductsController extends AppController {
 			}
 		}
 		$brands = $this -> Product -> Brand -> find('list');
-		$subcategories = $this -> Product -> Subcategory -> find('list');
-		$this -> set(compact('brands', 'subcategories'));
+		$this -> Product -> Subcategory -> Category -> contain('Subcategory.id', 'Subcategory.nombre');
+		$categories = $this -> Product -> Subcategory -> Category -> find(
+			'all',
+			array(
+				'fields' => array(
+					'Category.id',
+					'Category.nombre'
+				)
+			)
+		);
+		$this -> set(compact('brands', 'categories'));
 	}
 
 	/**
@@ -100,10 +109,27 @@ class ProductsController extends AppController {
 			}
 		} else {
 			$this -> request -> data = $this -> Product -> read(null, $id);
+			$subcategories = array();
+			$categories = array();
+			foreach ($this -> request -> data['Subcategory'] as $key => $subcategory) {
+				if(!in_array($subcategory['id'], $subcategories)) $subcategories[] = $subcategory['id'];
+				if(!in_array($subcategory['category_id'], $categories)) $categories[] = $subcategory['category_id'];
+			}
+			$this -> request -> data['Category'] = array('Category' => $categories);
+			$this -> request -> data['Subcategory'] = array('Subcategory' => $subcategories);
 		}
 		$brands = $this -> Product -> Brand -> find('list');
-		$subcategories = $this -> Product -> Subcategory -> find('list');
-		$this -> set(compact('brands', 'subcategories', 'wizard'));
+		$this -> Product -> Subcategory -> Category -> contain('Subcategory.id', 'Subcategory.nombre');
+		$categories = $this -> Product -> Subcategory -> Category -> find(
+			'all',
+			array(
+				'fields' => array(
+					'Category.id',
+					'Category.nombre'
+				)
+			)
+		);
+		$this -> set(compact('brands', 'categories', 'wizard'));
 	}
 
 	/**

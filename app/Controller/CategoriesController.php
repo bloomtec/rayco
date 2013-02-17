@@ -23,7 +23,6 @@ class CategoriesController extends AppController {
 		}else{
 			return $this -> Category -> find('list'); 
 		}
-		
 	}
 
 	/**
@@ -74,7 +73,18 @@ class CategoriesController extends AppController {
 		if ($this -> request -> is('post')) {
 			$this -> Category -> create();
 			if ($this -> Category -> save($this -> request -> data)) {
-				$this -> Session -> setFlash(__('Se guardó la categoría'), 'crud/success');
+				$this -> Category -> Subcategory -> create();
+				$subcategory = array(
+					'Subcategory' => array(
+						'category_id' => $this -> Category -> id,
+						'nombre' => 'empty'
+					)
+				);
+				if($this -> Category -> Subcategory -> save($subcategory)) {
+					$this -> Session -> setFlash(__('Se guardó la categoría'), 'crud/success');
+				} else {
+					$this -> Session -> setFlash(__('Error al crear la subcategoría "vacía"'), 'crud/error');
+				}
 				$this -> redirect(array('action' => 'index'));
 			} else {
 				$this -> Session -> setFlash(__('No se guardó la categoría. Por favor, intente de nuevo.'), 'crud/error');
