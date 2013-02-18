@@ -11,13 +11,13 @@
 			}
 			#BusquedaProducto select {
 				font-size: small;
-			    margin-left: 16px;
+			    margin-left: 12px;
 			    max-width: 120px;
 			    min-width: 120px;
 			}
 			#BusquedaProducto input {
 				font-size: small;
-				margin-left: 7px;
+				margin-left: 2px;
     			max-width: 114px;
 			}
 			#BusquedaProducto .submit {
@@ -25,12 +25,12 @@
 			    left: 4px;
 			    max-width: 70px;
 			    position: relative;
-			    top: -49px;
+			    top: -41px;
 			}
 			#BusquedaProducto .submit input {
 				font-size: small;
-			    height: 49px;
-			    width: 50px;
+			    height: 41px;
+			    width: 54px;
 			}
 		</style>
 	</div>
