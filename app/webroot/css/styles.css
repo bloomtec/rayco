@@ -142,6 +142,7 @@ a{
 .nuestros_productos{
 	float: right;
 	margin-top: 9px;
+	margin-bottom: 15px;
 }
 .nuestros_productos ul{
 	float: right;
@@ -362,4 +363,108 @@ img.imagen_principal{
 }
 .controles{
 	margin-top: 15px;
+}
+.info_content{
+	background: none repeat scroll 0 0 #FFFFFF;
+    padding: 0 27px 27px;
+}
+.info_content h1{
+	background: url("../img/titulo.png") no-repeat scroll left top transparent;
+    color: #F1671F;
+    font-size: 21px;
+    margin-bottom: 41px;
+    margin-left: -27px;
+    padding: 7px 26px;
+}
+.info_content p{
+	color: #949597;
+	line-height: 20px;
+}
+.info_content h2{
+	color: #F1671F;
+    font-size: 16px;
+    margin-top: 25px;
+    margin-bottom: 17px;
+}
+.left{
+	float: left;
+	border-right: 1px dotted #c9c9c9;
+	width: 315px;
+}
+.right{
+	float: left;
+	width: 315px;
+	padding-left: 30px;
+}
+.info_content form p{
+	font-size: 12px;
+	font-style: italic;
+	margin-bottom: 20px;
+}
+.requerido{
+	color: red;
+}
+.info_content form label{
+	color: #949597;
+    font-size: 14px;
+    width: 120px;
+    float: left;
+    margin-bottom: 20px;
+    text-align: right;
+    margin-right: 10px;
+    padding-top: 6px;
+}
+.info_content form input{
+	float: left;
+	margin-bottom: 20px;
+	color: #949597;
+    font-size: 14px;
+    padding: 5px;
+    border: 1px solid #afb0b2;
+    
+    -webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+.info_content form .right label{
+	text-align: left;
+	width: 100%;
+}
+.info_content form .right textarea{
+	color: #949597;
+    font-size: 14px;
+    padding: 5px;
+    border: 1px solid #afb0b2;
+    width: 90%;
+    clear: both;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 18px;
+    
+    -webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+.info_content form input.enviar{
+	background: #073f89;
+	border: none;
+	color: #fff;
+	text-transform: uppercase;
+	padding: 7px 17px;
+	margin-right: 8px;
+	margin-left: 55px;
+	
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+.info_content form input.borrar{
+	background: #818286;
+	border: none;
+	color: #fff;
+	text-transform: uppercase;
+	padding: 7px 17px;
+	
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
 }

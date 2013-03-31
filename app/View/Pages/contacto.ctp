@@ -1,28 +1,42 @@
-<div class="banner">
-	<?php echo $this -> requestAction("/banners/get/contacto");?>
+<?php echo $this -> element('nuestros_productos');?>
+<div class="info_content">
+	<h1>Contácto</h1>
+	<p>
+		<strong>Correo electronico:</strong> info@rayco.com.co
+		<br />
+		<strong>Tel:</strong> (+57)(2)387 3479 <strong>Cel:</strong> (+57)309 451 2536
+		<br />
+		<strong>Dirección:</strong> Cra 100 13-90 - Cali, Valle del cauca, Colombia
+	</p>
+	<h2>Formulario de contácto</h2>
+	<form>
+		<p><span class="requerido">*</span> Campos requeridos</p>
+		<fieldset>
+			<div class="left">
+				<label><span class="requerido">*</span>Nombre y apellido</label>
+				<input type="text" />
+				<label>Empresa</label>
+				<input type="text" />
+				<label><span class="requerido">*</span>Departamento</label>
+				<input type="text" />
+				<label><span class="requerido">*</span>Ciudad</label>
+				<input type="text" />
+				<label>teléfono</label>
+				<input type="text" />
+				<label><span class="requerido">*</span>Correo electrónico</label>
+				<input type="text" />
+			</div>
+			<div class="right">
+				<label>Preguntas o comentarios</label>
+				<textarea></textarea>
+				<input type="submit" value="enviar" class="enviar" />
+				<input type="submit" value="Borrar todo" class="borrar" />
+			</div>
+			<div style="clear: both;"></div>
+		</fieldset>
+	</form>
 </div>
-<div id="left-col">
-	<?php  echo $this -> element ("novedad");?>
-</div>
-<div id="right-col" class='black-wrapper form'>
-	<div id="contacto">
-	<?php echo $this -> Form->create("Page",array("action"=>"contacto","controller"=>"pages"));?>
-	<fieldset>
-		<h1>
-			Formulario de contacto
-		</h1>
-		<p>Con el fin de conocer sus preguntas y opiniones sobre nuestros productos y servicios tanto en red como en nuestras tiendas, ponemos a su disposición esta sección en la cual podrá enviarnos sus comentarios y sugerencias, nuestro equipo de soporte estará atento para brindarle colaboración que usted necesite.</p>
-		<?php echo $this -> Form->input("nombre_contacto",array("label"=>"Escribe tu (s) Nombre (s):",'required'=>'required'));?>
-		<?php echo $this -> Form->input("email",array("label"=>"Dirección E-mail:",'type'=>'email','required'=>'required'));?>
-		<?php echo $this -> Form->input("telefono",array('div' => ' input last',"label"=>"Teléfono:",'required'=>'required'));?>
-		<div style="clear:both;"></div>
-		<?php echo $this -> Form->input("comentario",array('type'=>'textarea',"label"=>"Escribe tu (s) Comentario (s)",'required'=>'required'));?>
-		<div style="clear:both;"></div>
-		<?php echo $this -> Form->end(__('Envíar', true), array('div' => false));?>
-	</fieldset>
-	<div style="clear:both;"></div>
-	</div>
-</div>
+
 <script>
 	$(function(){
 		$('#PageContactoForm').validator({ lang: 'es', position:"bottom left"});

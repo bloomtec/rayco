@@ -32,8 +32,8 @@ App::uses('AppController', 'Controller');
 class PagesController extends AppController {
 
 	public function beforeFilter() {
-		parent::beforeFilter();
-		$this -> Auth -> allow('display', 'home', 'construccion', 'view', 'contacto','carrito','tablaCarrito','registro','resumenCarrito','favoritos','tablaFavoritos','resumenFavoritos');
+		//ssparent::beforeFilter();
+		$this -> Auth -> allow('*');
 	}
 
 	/**
@@ -114,29 +114,20 @@ class PagesController extends AppController {
 	}
 
 	public function contacto() {
-		$this -> layout = 'pages';
-		if ($this -> request -> is('post') || $this -> request -> is('put')) {
-			$email_address = Configure::read('email');
-			$email_password = Configure::read('email_password');
-			$site_name = Configure::read('site_name');
-			$gmail = array('host' => 'ssl://smtp.gmail.com', 'port' => 465, 'username' => $email_address, 'password' => $email_password, 'transport' => 'Smtp');
-			App::uses('CakeEmail', 'Network/Email');
-			$email = new CakeEmail($gmail);
-			$email -> from(array($email_address => $site_name));
-			$email -> to($email_address);
-			$email -> subject('Contacto :: ' . $site_name . ' :: ' . $this -> request -> data['Page']['nombre_contacto']);
-			$email -> send('' . '
-				' . 'Nombre: ' . $this -> request -> data['Page']['nombre_contacto'] . '
-				' . 'Correo: ' . $this -> request -> data['Page']['email'] . '
-				' . 'Comentario:
-				' . $this -> request -> data['Page']['comentario']);
-			$this -> Session -> setFlash('Se ha enviado la información. Gracias por contactarnos.', 'crud/success');
-			$this -> redirect($this -> referer());
-		}
+		
 	}
+	
 
-	public function construccion() {
-		$this -> layout = 'ajax';
+	public function empresa() {
+	
+	}
+	public function locales()
+	{
+		
+	}
+	public function marcas()
+	{
+		
 	}
 
 	/**
