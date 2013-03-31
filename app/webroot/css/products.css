@@ -1,0 +1,23 @@
+/* PRODUCT admin_add */
+.category-section {
+	border-color: black;
+    border-style: outset;
+    border-width: 1px;
+    margin-bottom: 2px;
+}
+.category {
+	display: inline-block;
+	min-width: 30%;
+}
+#ProductAdminAddForm .radio {
+	clear: none;
+    float: none;
+    line-height: 0;
+    margin: 14px 2px 0 0;
+    padding: 0;
+    vertical-align: sub;
+}
+.subcategories {
+	display: inline-block;
+	min-width: 60%;
+}

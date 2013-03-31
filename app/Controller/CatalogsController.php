@@ -23,7 +23,7 @@ class CatalogsController extends AppController {
 	 * @param string $id
 	 * @return void
 	 */
-	public function view($id = null) {
+	public function view($id = 0) {
 		$this -> layout = 'default';
 		//$this -> Catalog -> contain('Category', 'Category.Subcategory', 'Category.Subcategory.Product');
 		// INFO DEL CATALOGO
@@ -64,6 +64,18 @@ class CatalogsController extends AppController {
 		}
 		
 		$products = $this -> Product -> ProductsSubcategory -> find('list', array('fields' => array('ProductsSubcategory.product_id'), 'conditions' => array('ProductsSubcategory.subcategory_id' => $subcategories)));
+		$busqueda = false;
+		
+		if($this -> request -> is('post')) {
+			$busqueda = true;
+			$search_conditions = array();
+			if(isset($this -> request -> data['Catalog']['brand']) && !empty($this -> request -> data['Catalog']['brand'])) {
+				$search_conditions['Product.brand_id'] = $this -> request -> data['Catalog']['brand'];
+			} 
+			$search_conditions['Product.nombre LIKE'] = '%' . $this -> request -> data['Catalog']['nombre'] . '%'; 
+			$matched_products = $this -> Product -> find('list', array('fields' => array('Product.id'), 'conditions' => $search_conditions));
+			$products = array_intersect($products, $matched_products);
+		}
 		
 		$this -> paginate = array(
 			'Product' => array(
@@ -71,6 +83,9 @@ class CatalogsController extends AppController {
 			)
 		);
 		
+		$this -> set('busqueda', $busqueda);
+		$brands = $this -> Product -> find('list', array('fields' => array('Product.brand_id'), 'conditions' => array('Product.id' => $products)));
+		$this -> set('brands', $this -> Product -> Brand -> find('list', array('conditions' => array('Brand.id' => $brands))));
 		$this -> set('products', $this -> paginate('Product'));
 		$this -> set('products_title', $products_title);
 		$this -> Session -> write('previous_section', $products_title);

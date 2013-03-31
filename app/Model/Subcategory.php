@@ -56,14 +56,14 @@ class Subcategory extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-			'isUnique' => array(
+			/*'isUnique' => array(
 				'rule' => array('isUnique'),
 				'message' => 'El valor ingresado ya existe',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			),*/
 		),
 	);
 
