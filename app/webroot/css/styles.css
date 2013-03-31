@@ -76,14 +76,17 @@ a{
 	width: 62px;
 	padding-left: 44px;
 }
-.menu_principal .productos{
-	padding: 14px 9px;
+.menu_principal .locales{
+	padding: 14px 50px;
 }
 .menu_principal .empresa{
-	padding: 14px 29px;
+	padding: 14px 20px;
 }
 .menu_principal .marca{
-	padding: 14px 30px;
+	padding: 14px 40px;
+}
+.menu_principal .marca{
+	padding-right: 20px;
 }
 .footer{
 	background: url(/img/footer_bg.jpg) no-repeat right top;
