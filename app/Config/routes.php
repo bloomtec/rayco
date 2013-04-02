@@ -27,6 +27,10 @@
  */
 	Router::connect('/admin', array('controller' => 'users', 'action' => 'login','plugin'=>'UserControl','admin'=>true));
 	Router::connect('/', array('controller' => 'pages', 'action' => 'home'));
+	Router::connect('/empresa', array('controller' => 'pages', 'action' => 'empresa'));
+	Router::connect('/locales', array('controller' => 'pages', 'action' => 'locales'));
+	Router::connect('/marcas', array('controller' => 'pages', 'action' => 'marcas'));
+	Router::connect('/contacto', array('controller' => 'pages', 'action' => 'contacto'));
 	Router::connect('/registro', array('controller' => 'users', 'action' => 'register','plugin'=>'UserControl'));
 	
 /**

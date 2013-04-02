@@ -468,3 +468,55 @@ img.imagen_principal{
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 }
+.info_content img{
+	float: right;
+	padding: 9px;
+	border: 1px solid #e8e9eb;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	margin-left: 25px;
+	margin-bottom: 25px;
+}
+.info_link{
+	color: #074087;
+	display: block;
+	margin: 25px 0;
+	font-weight: bold;
+	clear: both;
+}
+.locales .left{
+	width: 420px;
+	padding-right: 24px;
+	text-align: center;
+}
+.locales .right{
+	width: 420px;
+	padding-left: 24px;
+	text-align: center;
+}
+.info_content .carousel img, .info_content .controls img{
+	float: none;
+}
+.info_content .controls{
+	margin-bottom: 8px;
+}
+.info_content .controls img{
+	margin: 0 3px;
+	vertical-align: middle;
+}
+.info_content .controls .arrow-left img, .info_content .controls .arrow-right img{
+	border: none;
+}
+.info_content.locales p{
+	font-size: 14px;
+	text-align: left;
+}
+.info_content .marca{
+	display: block;
+	float: left;
+	margin: 5px;
+}
+.info_content .marca img{
+	margin: 0;
+}
