@@ -119,7 +119,8 @@ class PagesController extends AppController {
 	
 
 	public function empresa() {
-	
+		$this -> loadModel("Company");
+		$this -> set("company", $this -> Company -> read(null,1));
 	}
 	public function locales()
 	{
