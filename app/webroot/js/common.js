@@ -24,6 +24,24 @@ $(function() {
 	   days:         'Domingo,Lunes,Martes,Miércoles,Jueves,Viernes,Sábado',
 	   shortDays:    'Dom,Lun,Mar,Mie,Jue,Vie,Sab'	   
    });
-   
+
+
+});
+
+
+$(function(){
+    $(".scrollable").scrollable({
+        next:".arrow-right",
+        prev:".arrow-left"
+    });
+    $('.scrollable a').click(function(){
+        $that = $(this);
+        $that.parents('.controls').prev().find('img').animate({opacity:0},'fast',function(){
+            $that.addClass('current').siblings().removeClass('current')
+            $(this).attr('src',$that.children('img').attr('src').replace('50x50','360x360')).load(function(){
+                $(this).animate({opacity:1},'fast');
+            });
+        });
+    });
 
 });

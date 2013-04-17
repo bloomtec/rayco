@@ -2,20 +2,22 @@
 	<h2><?php echo __('Puntos De Ventas'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
-		<th><?php echo $this -> Paginator -> sort('image', 'Imagen'); ?></th>
+
 		<th><?php echo $this -> Paginator -> sort('nombre'); ?></th>
 		<th><?php echo $this -> Paginator -> sort('direccion', 'Dirección'); ?></th>
 		<th><?php echo $this -> Paginator -> sort('telefono', 'Teléfono'); ?></th>
+        <th><?php echo $this -> Paginator -> sort('celular', 'Celular'); ?></th>
 		<th><?php echo $this -> Paginator -> sort('created', 'Creado'); ?></th>
 		<th><?php echo $this -> Paginator -> sort('modified', 'Modificado'); ?></th>
 		<th class="actions"><?php echo __('Acciones'); ?></th>
 	</tr>
 	<?php foreach ($pointsOfSales as $pointsOfSale): ?>
 	<tr>
-		<td><?php echo $this -> Html -> image('uploads/50x50/' . $pointsOfSale['PointsOfSale']['image']); ?>&nbsp;</td>
+
 		<td><?php echo h($pointsOfSale['PointsOfSale']['nombre']); ?>&nbsp;</td>
 		<td><?php echo h($pointsOfSale['PointsOfSale']['direccion']); ?>&nbsp;</td>
 		<td><?php echo h($pointsOfSale['PointsOfSale']['telefono']); ?>&nbsp;</td>
+        <td><?php echo h($pointsOfSale['PointsOfSale']['celular']); ?>&nbsp;</td>
 		<td><?php echo h($pointsOfSale['PointsOfSale']['created']); ?>&nbsp;</td>
 		<td><?php echo h($pointsOfSale['PointsOfSale']['modified']); ?>&nbsp;</td>
 		<td class="actions">
@@ -42,7 +44,7 @@
 	</div>
 </div>
 <div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
+	<h3><?php echo __('Acciones'); ?></h3>
 	<ul>
 		<li><?php echo $this -> Html -> link(__('Agregar Punto De Venta'), array('action' => 'add')); ?></li>
 	</ul>

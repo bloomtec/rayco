@@ -6,12 +6,7 @@
 			<?php echo h($pointsOfSale['PointsOfSale']['nombre']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Imagen'); ?></dt>
-		<dd>
-			<?php //echo h($product['Product']['image']); ?>
-			<?php echo $this -> Html -> image('uploads/215x215/' . $pointsOfSale['PointsOfSale']['image']); ?>
-			&nbsp;
-		</dd>
+
 		<dt><?php echo __('Dirección'); ?></dt>
 		<dd>
 			<?php echo h($pointsOfSale['PointsOfSale']['direccion']); ?>
@@ -22,11 +17,12 @@
 			<?php echo h($pointsOfSale['PointsOfSale']['telefono']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Contenido'); ?></dt>
-		<dd>
-			<?php echo $pointsOfSale['PointsOfSale']['contenido']; ?>
-			&nbsp;
-		</dd>
+        <dt><?php echo __('Celular'); ?></dt>
+        <dd>
+            <?php echo h($pointsOfSale['PointsOfSale']['celular']); ?>
+            &nbsp;
+        </dd>
+
 		<dt><?php echo __('Creado'); ?></dt>
 		<dd>
 			<?php echo h($pointsOfSale['PointsOfSale']['created']); ?>

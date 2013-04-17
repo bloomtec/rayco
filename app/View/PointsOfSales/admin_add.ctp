@@ -7,21 +7,18 @@
 	</div>
 	<fieldset style="max-width: 60%;">
 		<legend><?php echo __('Agregar Punto De Venta'); ?></legend>
-		<br />
-		<?php echo $this -> Form -> hidden('image', array('id' => 'single-field')); ?>
+
 		<br />
 		<?php echo $this -> Form -> input('nombre'); ?>
 		<br />
 		<?php echo $this -> Form -> input('direccion', array('label' => 'Dirección')); ?>
 		<br />
 		<?php echo $this -> Form -> input('telefono', array('label' => 'Teléfono')); ?>
+        <br />
+        <?php echo $this -> Form -> hidden('celular', array('label' => 'Celular')); ?>
 	</fieldset>
 	<br />
-	<fieldset>
-		<?php
-		echo $this -> Form -> input('contenido', array('class' => 'editor'));
-		?>
-	</fieldset>
+
 	<?php echo $this -> Form -> end(__('Agregar')); ?>
 </div>
 <div class="actions">

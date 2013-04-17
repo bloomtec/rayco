@@ -318,11 +318,11 @@ a{
 }
 .prev{
 	left: 32px;
-	background: url(/img/prev.png) no-repeat;
+	background: url(../img/prev.png) no-repeat;
 }
 .next{
 	right: 22px;
-	background: url(/img/next.png) no-repeat;
+	background: url(../img/next.png) no-repeat;
 }
 .regresar{
 	color: #073f87;
@@ -502,11 +502,14 @@ img.imagen_principal{
 	margin-bottom: 8px;
 }
 .info_content .controls img{
-	margin: 0 3px;
+	margin:0;
 	vertical-align: middle;
 }
 .info_content .controls .arrow-left img, .info_content .controls .arrow-right img{
 	border: none;
+}
+.arrow-left{
+    margin-left: 20px;
 }
 .info_content.locales p{
 	font-size: 14px;
@@ -520,3 +523,55 @@ img.imagen_principal{
 .info_content .marca img{
 	margin: 0;
 }
+.main_image img{
+    width:300px;
+    height: 300px;
+    float: none;
+}
+.scrollable{
+    float: left;
+    width: 322px;
+    height: 72px;
+    position: relative;
+    overflow: hidden;
+}
+.arrow-left,
+.arrow-right{
+    float:left;
+    cursor: pointer;
+    margin-top: 16px;
+}
+.scrollable a{
+    float:left;
+    width: 60px;
+    height: 60px;
+    margin-right: 24px;
+    opacity: 0.5;
+}
+.scrollable a.current{
+    opacity: 1;
+}
+.scrollable a img{
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+.scrollable .items{
+    width: 20000em;
+    position: absolute;
+    clear: both;
+}
+.info_content form  input.invalid{
+    border:solid red 1px;
+}
+
+ .error {
+    /* supply height to ensure consistent positioning for every browser */
+    height:15px;
+    font-size:11px;
+    color:red;
+    padding:3px 10px;
+    margin-left:-2px;
+}
+
+

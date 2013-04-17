@@ -124,6 +124,8 @@ class PagesController extends AppController {
 	}
 	public function locales()
 	{
+        $this -> loadModel("PointsOfSale");
+        $this -> set("locales", $this -> PointsOfSale -> find('all'));
 		
 	}
 	public function marcas()

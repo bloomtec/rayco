@@ -3,50 +3,64 @@
 	<h1>Nuestras oficinas</h1>
 
 	<div class="left">
-		<div class="carousel">
-			<img src="/img/main_image.jpg" />
-		</div>
-		<div class="controls">
-			<a class="arrow-left"><img src="/img/arrow-left.png" /></a>
-			
-			<a><img src="/img/thum.jpg" /></a>
-			<a><img src="/img/thum.jpg" /></a>
-			<a><img src="/img/thum.jpg" /></a>
-			<a><img src="/img/thum.jpg" /></a>
-			
-			<a class="arrow-right"><img src="/img/arrow-right.png" /></a>
-		</div>
-		
-		<p>
-			<strong>Correo electronico:</strong> info@rayco.com.co
-			<br />
-			<strong>Tel:</strong> (+57)(2)387 3479 <strong>Cel:</strong> (+57)309 451 2536
-			<br />
-			<strong>Dirección:</strong> Cra 100 13-90 - Cali, Valle del cauca, Colombia
-		</p>
+        <?php foreach($locales as $key => $local):?>
+            <?php if($key % 2 == 0):?>
+            <div class="main_image">
+                <img src="/img/uploads/360x360/<?php echo $local['Image'][0]['image'];?>" />
+            </div>
+            <div class="controls">
+                <a class="arrow-left"><img src="/img/arrow-left.png" /></a>
+                <div class="scrollable">
+                    <div class="items">
+                        <?php foreach($local["Image"] as $i => $image):?>
+                        <a <?php if($i==0) echo "class='current'"?>><img src="/img/uploads/50x50/<?php echo $image['image'];?>" /></a>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+
+                <a class="arrow-right"><img src="/img/arrow-right.png" /></a>
+                <div style="clear:both;"></div>
+            </div>
+
+            <p>
+                <strong>Correo electronico:</strong> info@rayco.com.co
+                <br />
+                <strong>Tel:</strong> <?php echo  $local['PointsOfSale']['telefono']?> <strong>Cel:</strong> <?php echo  $local['PointsOfSale']['celular']?>
+                <br />
+                <strong>Dirección:</strong> <?php echo  $local['PointsOfSale']['direccion']?>
+            </p>
+             <?php endif;?>
+        <?php endforeach; ?>
 	</div>
 	<div class="right">
-		<div class="carousel">
-			<img src="/img/main_image.jpg" />
-		</div>
-		<div class="controls">
-			<a class="arrow-left"><img src="/img/arrow-left.png" /></a>
-			
-			<a><img src="/img/thum.jpg" /></a>
-			<a><img src="/img/thum.jpg" /></a>
-			<a><img src="/img/thum.jpg" /></a>
-			<a><img src="/img/thum.jpg" /></a>
-			
-			<a class="arrow-right"><img src="/img/arrow-right.png" /></a>
-		</div>
-		
-		<p>
-			<strong>Correo electronico:</strong> info@rayco.com.co
-			<br />
-			<strong>Tel:</strong> (+57)(2)387 3479 <strong>Cel:</strong> (+57)309 451 2536
-			<br />
-			<strong>Dirección:</strong> Cra 100 13-90 - Cali, Valle del cauca, Colombia
-		</p>
+        <?php foreach($locales as $key => $local):?>
+            <?php if($key % 2 != 0):?>
+                <div class="main_image">
+                    <img src="/img/uploads/360x360/<?php echo $local['Image'][0]['image'];?>" />
+                </div>
+                <div class="controls">
+                    <a class="arrow-left"><img src="/img/arrow-left.png" /></a>
+                    <div class="scrollable">
+                        <div class="items">
+                            <?php foreach($local["Image"] as $i => $image):?>
+                                <a <?php if($i==0) echo "class='current'"?>><img src="/img/uploads/50x50/<?php echo $image['image'];?>" /></a>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+
+                    <a class="arrow-right"><img src="/img/arrow-right.png" /></a>
+                    <div style="clear:both;"></div>
+                </div>
+
+                <p>
+                    <strong>Correo electronico:</strong> info@rayco.com.co
+                    <br />
+                    <strong>Tel:</strong> <?php echo  $local['PointsOfSale']['telefono']?> <strong>Cel:</strong> <?php echo  $local['PointsOfSale']['celular']?>
+                    <br />
+                    <strong>Dirección:</strong> <?php echo  $local['PointsOfSale']['direccion']?>
+                </p>
+            <?php endif;?>
+        <?php endforeach; ?>
 	</div>
 	
 	
