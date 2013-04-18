@@ -116,7 +116,7 @@ class PagesController extends AppController {
 
 	public function contacto() {
 		if($this->request->is('post')) {
-			$para  = 'juliodominguez@gmail.com';
+			$para  = 'ricardopandales@gmail.com, jc.rojas.sanchez@hotmail.com';
 			$titulo = ':: Contact RAYCO ::';
 			$mensaje =
 			'
@@ -148,6 +148,8 @@ class PagesController extends AppController {
 			$cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 			if(mail($para, $titulo, $mensaje, $cabeceras)) {
 				$this->Session->setFlash(__('Su mensaje ha sido enviado'), 'crud/success');
+			} else {
+				$this->Session->setFlash(__('Ha ocurrido un error al tratar de enviar su mensaje'), 'crud/error');
 			}
 		}
 	}
