@@ -117,7 +117,7 @@ class PagesController extends AppController {
 	public function contacto() {
 		if($this->request->is('post')) {
 			$para  = 'ricardopandales@gmail.com, jc.rojas.sanchez@hotmail.com';
-			$titulo = ':: Contact RAYCO ::';
+			$titulo = ':: Contacto RAYCO ::';
 			$mensaje =
 			'
 			<table>
