@@ -20,6 +20,7 @@
  */
 
 App::uses('AppController', 'Controller');
+App::uses('CakeEmail', 'Network/Email');
 
 /**
  * Static content controller
@@ -114,7 +115,39 @@ class PagesController extends AppController {
 	}
 
 	public function contacto() {
-		
+		if($this->request->is('post')) {
+			$para  = 'juliodominguez@gmail.com';
+			$titulo = ':: Contact RAYCO ::';
+			$mensaje =
+			'
+			<table>
+				<tr>
+					<td>Nombre y Apellido</td><td>' . $this->request->data['Contacto']['nombre_y_apellido'] . '</td>
+				</tr>
+				<tr>
+					<td>Empresa</td><td>' . $this->request->data['Contacto']['empresa'] . '</td>
+				</tr>
+				<tr>
+					<td>Departamento</td><td>' . $this->request->data['Contacto']['departamento'] . '</td>
+				</tr>
+				<tr>
+					<td>Ciudad</td><td>' . $this->request->data['Contacto']['ciudad'] . '</td>
+				</tr>
+				<tr>
+					<td>Teléfono</td><td>' . $this->request->data['Contacto']['telefono'] . '</td>
+				</tr>
+				<tr>
+					<td>Corre Electrónico</td><td>' . $this->request->data['Contacto']['email'] . '</td>
+				</tr>
+				<tr>
+					<td>Preguntas o Comentarios</td><td>' . $this->request->data['Contacto']['mensaje'] . '</td>
+				</tr>
+			<table>
+			';
+			$cabeceras  = 'MIME-Version: 1.0' . "\r\n";
+			$cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+			mail($para, $titulo, $mensaje, $cabeceras);
+		}
 	}
 	
 
