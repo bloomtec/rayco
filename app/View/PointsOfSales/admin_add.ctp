@@ -10,6 +10,8 @@
 
 		<br />
 		<?php echo $this -> Form -> input('nombre'); ?>
+        <br />
+        <?php echo $this -> Form -> input('email', array('label' => 'Email')); ?>
 		<br />
 		<?php echo $this -> Form -> input('direccion', array('label' => 'Dirección')); ?>
 		<br />
