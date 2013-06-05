@@ -3,7 +3,7 @@
 <div class="marcas_wrapper">
 
 	<div>
-		<img src="/img/rayco.png">
+		<img src="/img/logo_rayco_catalogo.png">
 		<p>
 			Se llama luz (del latín lux, lucis) a la parte de la radiación electromagnética que puede ser percibida por el ojo humano....
 		</p>

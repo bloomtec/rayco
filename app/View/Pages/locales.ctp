@@ -9,10 +9,10 @@
 		z-index:10000;
 
 		/* styling */
-		background-color:#333;
+		background-color:white;
 
-		min-height: 400px;
-		min-width: 400px;
+		min-width: 700px;
+		min-height: 415px;
 		border:1px solid #666;
 
 		/* CSS3 styling for latest browsers */
@@ -30,6 +30,7 @@
 		height:35px;
 		width:35px;
 	}
+
 </style>
 <script type="text/javascript">
 	$(function() {

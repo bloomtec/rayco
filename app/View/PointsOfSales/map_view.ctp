@@ -3,7 +3,7 @@
 	var map;
 	function initialize() {
 		var mapOptions = {
-			zoom: 13,
+			zoom: 8,
 			center: new google.maps.LatLng(<?php echo $lat; ?>, <?php echo $lng; ?>),
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 		};
@@ -28,4 +28,10 @@
 	google.maps.event.addDomListener(window, 'load', initialize);
 
 </script>
+<style>
+    #map-canvas{
+        min-width: 650px;
+        min-height: 400px;
+    }
+</style>
 <div id="map-canvas"></div>
