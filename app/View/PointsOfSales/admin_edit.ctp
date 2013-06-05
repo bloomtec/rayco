@@ -12,8 +12,10 @@
 		<?php echo $this -> Form -> input('direccion', array('label' => 'Dirección')); ?>
 		<br />
 		<?php echo $this -> Form -> input('telefono', array('label' => 'Teléfono')); ?>
-        <br />
-        <?php echo $this -> Form -> input('celular', array('label' => 'Celular')); ?>
+		<br />
+		<?php echo $this -> Form -> input('lat', array('label' => 'Latitud')); ?>
+		<br />
+		<?php echo $this -> Form -> input('lng', array('label' => 'Longitud')); ?>
 	</fieldset>
 	<br />
 
@@ -21,7 +23,13 @@
 </div>
 <?php endif; ?>
 <div style="clear:both;"></div>
-
+<div class="images" style="float: right; margin-right: 350px;">
+	<h2>Subir imagenes del punto de venta<local></local></h2>
+	<div class="preview"></div>
+	<div id="model_class" rel="PointsOfSale"></div>
+	<div id="foreign_key" rel="<?php echo $this -> request -> data['PointsOfSale']['id']; ?>"></div>
+	<div id="multiple-upload" controller="points_of_sales"></div>
+</div>
 <div class="actions" style="max-width: 40%;">
 	<h3><?php echo __('Acciones'); ?></h3>
 	<ul>

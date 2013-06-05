@@ -22,7 +22,16 @@
             <?php echo h($pointsOfSale['PointsOfSale']['celular']); ?>
             &nbsp;
         </dd>
-
+		<dt><?php echo __('Latitud'); ?></dt>
+		<dd>
+			<?php echo h($pointsOfSale['PointsOfSale']['lat']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Longitud'); ?></dt>
+		<dd>
+			<?php echo h($pointsOfSale['PointsOfSale']['lng']); ?>
+			&nbsp;
+		</dd>
 		<dt><?php echo __('Creado'); ?></dt>
 		<dd>
 			<?php echo h($pointsOfSale['PointsOfSale']['created']); ?>
@@ -35,6 +44,16 @@
 		</dd>
 	</dl>
 </div>
+<?php
+	$lat = $pointsOfSale['PointsOfSale']['lat'];
+	$lng = $pointsOfSale['PointsOfSale']['lng'];
+?>
+<iframe
+	src="/PointsOfSales/mapView/lat:<?php echo $lat; ?>/lng:<?php echo $lng; ?>"
+    height="400px"
+    width="100%"
+>
+</iframe>
 <div class="actions">
 	<h3><?php echo __('Acciones'); ?></h3>
 	<ul>
@@ -64,5 +83,4 @@
 	<?php endforeach; ?>
 	<?php endif; ?>
 	</table>
-</div>
 </div>

@@ -28,24 +28,25 @@
 	<?php
 		echo $this->Html->meta('icon');
 		
-		echo $this->Html->css('reset.css');
-		echo $this->Html->css('Ez.ez.css');
-		echo $this->Html->css('Ez.styles.css');
+		echo $this -> Html -> css('reset.css');
+		echo $this -> Html -> css('Ez.ez.css');
+		echo $this -> Html -> css('Ez.styles.css');
 		echo $this -> Html -> css('Ez.superfish/superfish');
 		echo $this -> Html -> css('uploadify');
+
 		echo $this -> Html -> script('jquery.tools.min.js');
 		echo $this -> Html -> script('jquery.uploadify.min');
 		echo $this -> Html -> script('upload');
 		echo $this -> Html -> script('bjs/bjs');
 		echo $this -> Html -> script('Ez.ckeditor/ckeditor'); 
 		echo $this -> Html -> script('Ez.ckeditor/adapters/jquery');
-		echo $this -> Html -> script('Ez.ez');		
+		echo $this -> Html -> script('Ez.ez');
 		echo $this -> Html -> script('Ez.superfish/hoverIntent.js'); 
 		echo $this -> Html -> script('Ez.superfish/superfish.js');
 		
-		echo $this->fetch('meta');
-		echo $this->fetch('css');
-		echo $this->fetch('script');
+		echo $this -> fetch('meta');
+		echo $this -> fetch('css');
+		echo $this -> fetch('script');
 	?>
 </head>
 <body id="ez" class="default">

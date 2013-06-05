@@ -7,6 +7,12 @@ App::uses('AppController', 'Controller');
  */
 class PointsOfSalesController extends AppController {
 
+	public function mapView() {
+		$this->layout=false;
+		$this->set('lat', $this->params->named['lat']);
+		$this->set('lng', $this->params->named['lng']);
+	}
+
 	/**
 	 * index method
 	 *
