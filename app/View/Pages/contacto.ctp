@@ -2,13 +2,7 @@
 <div class="info_content">
 	<h1>Contácto</h1>
 
-	<p>
-		<strong>Correo electronico:</strong> info@rayco.com.co
-		<br/>
-		<strong>Tel:</strong> (+57)(2)387 3479 <strong>Cel:</strong> (+57)309 451 2536
-		<br/>
-		<strong>Dirección:</strong> Cra 100 13-90 - Cali, Valle del cauca, Colombia
-	</p>
+	<?php echo $text; // Texto administrable de contacto ?>
 
 	<h2>Formulario de contácto</h2>
 

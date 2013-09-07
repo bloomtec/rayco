@@ -88,6 +88,19 @@
 			</li>
 		</ul>
 	</li>
+	<!-- TEXTOS ADMINISTRABLES -->
+	<li>
+		<?php
+			echo $this->Html->link('Textos', '#');
+		?>
+		<ul>
+			<li>
+				<?php
+					echo $this->Html->link('Contacto', array('plugin' => false, 'controller' => 'texts', 'action' => 'edit', 1));
+				?>
+			</li>
+		</ul>
+	</li>
 	<!-- LOGOUT -->
 	<li>
 		<?php

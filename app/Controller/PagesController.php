@@ -152,6 +152,10 @@ class PagesController extends AppController {
 				$this->Session->setFlash(__('Ha ocurrido un error al tratar de enviar su mensaje'), 'crud/error');
 			}
 		}
+
+		$this->loadModel('Text');
+		$text = $this->Text->read(null, 1);
+		$this->set('text', $text['Text']['text']);
 	}
 	
 
