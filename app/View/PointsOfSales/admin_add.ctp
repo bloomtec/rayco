@@ -19,6 +19,8 @@
 		<br />
 		<?php echo $this -> Form -> input('telefono', array('label' => 'Teléfono')); ?>
         <br />
+		<?php echo $this -> Form -> input('celular', array('label' => 'Celular')); ?>
+		<br />
         <?php echo $this -> Form -> input('lat', array('label' => 'Latitud')); ?>
 		<br />
 		<?php echo $this -> Form -> input('lng', array('label' => 'Longitud')); ?>
