@@ -6,8 +6,7 @@
 
 	<h2>Formulario de contácto</h2>
 
-	<form action="/pages/contacto" method="post"
-	">
+	<form action="/pages/contacto" method="post">
 	<p><span class="requerido">*</span> Campos requeridos</p>
 	<fieldset>
 		<div class="left">
