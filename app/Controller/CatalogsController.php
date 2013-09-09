@@ -72,7 +72,7 @@ class CatalogsController extends AppController {
 			if(isset($this -> request -> data['Catalog']['brand']) && !empty($this -> request -> data['Catalog']['brand'])) {
 				$search_conditions['Product.brand_id'] = $this -> request -> data['Catalog']['brand'];
 			} 
-			$search_conditions['Product.nombre LIKE'] = '%' . $this -> request -> data['Catalog']['nombre'] . '%'; 
+			$search_conditions['Product.referencia LIKE'] = '%' . $this -> request -> data['Catalog']['referencia'] . '%';
 			$matched_products = $this -> Product -> find('list', array('fields' => array('Product.id'), 'conditions' => $search_conditions));
 			$products = array_intersect($products, $matched_products);
 		}

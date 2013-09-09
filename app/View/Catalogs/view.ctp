@@ -42,7 +42,7 @@
 		<?php foreach ($products as  $product): ?>
 		<div>
 			<a href="/products/view/<?php echo $product['Product']['id']; ?>"><img src="/img/uploads/thumb/<?php echo $product['Product']['image']; ?>" /></a>
-			<a href="/products/view/<?php echo $product['Product']['id']; ?>"><h3><?php echo $product['Product']['nombre']; ?></h3></a>
+			<a href="/products/view/<?php echo $product['Product']['id']; ?>"><h3><?php echo $product['Product']['referencia']; ?></h3></a>
 		</div>
 		<?php //debug($product); ?>
 		<?php endforeach; ?>

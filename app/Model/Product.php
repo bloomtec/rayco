@@ -14,7 +14,7 @@ class Product extends AppModel {
 	 *
 	 * @var string
 	 */
-	public $displayField = 'nombre';
+	public $displayField = 'referencia';
 	
 	/**
 	 * Virtual Fields
@@ -32,14 +32,14 @@ class Product extends AppModel {
 	 */
 	public $validate = array(
 		'nombre' => array(
-			'notempty' => array(
+			/*'notempty' => array(
 				'rule' => array('notempty'),
 				'message' => 'Debe ingresar un nombre',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			),*/
 			'isUnique' => array(
 				'rule' => array('isUnique'),
 				'message' => 'Este nombre ya esta asignado a otro producto',

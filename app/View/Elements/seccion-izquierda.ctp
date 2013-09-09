@@ -2,7 +2,7 @@
 	<div class="busqueda">
 		<?php echo $this -> Form -> create('Catalog', array('id' => 'BusquedaProducto', 'action' => 'view/' . $this -> params['pass'][0])); ?>
 		<?php echo $this -> Form -> input('brand', array('label' => 'Marca', 'empty' => 'Seleccione...')); ?>
-		<?php echo $this -> Form -> input('nombre', array('value' => '', 'placeholder' => 'Nombre que busca', 'title' => 'La busqueda corresponde con los productos relacionados a la vista actual.')); ?>
+		<?php echo $this -> Form -> input('referencia', array('value' => '', 'placeholder' => 'Ingrese total o parcialmente la referencia que busca', 'title' => 'Ingrese total o parcialmente la referencia que busca')); ?>
 		<?php echo $this -> Form -> submit('Buscar'); ?>
 		<?php echo $this -> Form -> end(); ?>
 		<style>
