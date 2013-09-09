@@ -79,7 +79,8 @@ class CatalogsController extends AppController {
 		
 		$this -> paginate = array(
 			'Product' => array(
-				'conditions' => array('Product.id' => $products)
+				'conditions' => array('Product.id' => $products),
+				'limit' => 12
 			)
 		);
 		

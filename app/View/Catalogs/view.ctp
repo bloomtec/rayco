@@ -7,8 +7,14 @@
 	<?php endif; ?>
 	<!--<a class="prev"></a>
 	<a class="next"></a>-->
-	<?php echo $this -> Paginator->prev(__(''), array(), null, array('class' => 'prev disabled')); ?>
-	<?php echo $this -> Paginator->next(__(''), array(), null, array('class' => 'next disabled')); ?>
+	<?php //echo $this -> Paginator->prev(__(''), array(), null, array('class' => 'prev disabled')); ?>
+	<?php //echo $this -> Paginator->next(__(''), array(), null, array('class' => 'next disabled')); ?>
+	<?php
+		$prevImg = $this->Html->image('prev.png', array('alt' => 'anterior'));
+		$nextImg = $this->Html->image('next.png', array('alt' => 'siguiente'));
+		echo $this -> Paginator->prev(($this->Paginator->hasPrev() ? $prevImg : null), array('escape' => false), null, array('class' => 'disabled'));
+		echo $this -> Paginator->next(($this->Paginator->hasNext() ? $nextImg : null), array('escape' => false), null, array('class' => 'disabled'));
+	?>
 	<h2><?php echo $products_title; ?></h2>
 	<div class="paginacion">
 		<!--<p>
