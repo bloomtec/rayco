@@ -12,7 +12,7 @@
 		<?php
 			echo $this -> Form -> hidden('image', array('id' => 'single-field'));
 			echo $this -> Form -> input('brand_id', array('label' => 'Marca', 'empty' => 'Seleccione...'));
-			echo $this -> Form -> input('nombre');
+			//echo $this -> Form -> input('nombre');
 			echo $this -> Form -> input('referencia');
 			echo $this -> Form -> input('descripcion', array('label' => 'Descripción'));
 			echo $this -> Form -> input('es_visible', array('checked' => 'checked'));

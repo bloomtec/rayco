@@ -6,20 +6,20 @@
 			<?php echo $this->Html->link($product['Brand']['nombre'], array('controller' => 'brands', 'action' => 'view', $product['Brand']['id'])); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Nombre'); ?></dt>
+		<dt><?php echo __('Referencia'); ?></dt>
 		<dd>
-			<?php echo h($product['Product']['nombre']); ?>
+			<?php echo h($product['Product']['referencia']); ?>
 			&nbsp;
 		</dd>
+		<!--<dt><?php //echo __('Nombre'); ?></dt>
+		<dd>
+			<?php //echo h($product['Product']['nombre']); ?>
+			&nbsp;
+		</dd>-->
 		<dt><?php echo __('Imagen'); ?></dt>
 		<dd>
 			<?php //echo h($product['Product']['image']); ?>
 			<?php echo $this -> Html -> image('uploads/215x215/' . $product['Product']['image']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Referencia'); ?></dt>
-		<dd>
-			<?php echo h($product['Product']['referencia']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Descripción'); ?></dt>

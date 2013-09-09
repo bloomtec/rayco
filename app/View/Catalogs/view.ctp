@@ -41,9 +41,9 @@
 	<div class="productos">
 		<?php foreach ($products as  $product): ?>
 		<div>
-			<a href="/products/view/<?php echo $product['Product']['id']; ?>"><h3><?php echo $product['Product']['nombre']; ?></h3></a>
-			<a href="/products/view/<?php echo $product['Product']['id']; ?>"><img src="/img/uploads/thumb/<?php echo $product['Product']['image']; ?>" /></a>
-			<a href="/products/view/<?php echo $product['Product']['descripcion']; ?>"><h3><?php echo $product['Product']['nombre']; ?></h3></a>
+			<a class="load" rel="#overlay" href="/products/view/<?php echo $product['Product']['id']; ?>"><h3><?php echo $product['Product']['referencia']; ?></h3></a>
+			<a class="load" rel="#overlay" href="/products/view/<?php echo $product['Product']['id']; ?>"><img src="/img/uploads/thumb/<?php echo $product['Product']['image']; ?>" /></a>
+			<p class="marca">Marca: <?php echo $product['Brand']['nombre']; ?></p>
 
 		</div>
 		<?php //debug($product); ?>
@@ -73,3 +73,9 @@
 	</div>
 </div>
 <div style="clear:both;"></div>
+<!-- overlayed element -->
+<div class="apple_overlay" id="overlay">
+	<div class="close" style="background-image:url(/img/close.png); position:absolute; right:-15px; top:-15px; cursor:pointer; height:35px;width:35px; z-index: 100"></div>
+	<!-- the external content is loaded inside this tag -->
+	<div class="contentWrap"></div>
+</div>
