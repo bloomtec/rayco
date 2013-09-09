@@ -229,6 +229,9 @@ a{
 	padding-top: 20px;
 	margin-top: 8px;
 }
+.seccion_izquierda .listado{
+    margin-top: 20px;
+}
 .seccion_izquierda ul li{
 	margin-bottom: 20px;
 }
@@ -236,6 +239,7 @@ a{
 	margin-bottom: 5px;
 	margin-top: 5px;
 }
+
 .seccion_izquierda a{
 	color: #073f87;
 	font-size: 18px;

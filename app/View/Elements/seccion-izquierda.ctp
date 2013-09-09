@@ -38,7 +38,7 @@
 		<?php $categories = $this -> requestAction('/categories/get/' . $catalogId); ?>
 		<ul>
 			<?php foreach($categories as $id =>$category): ?>
-			<li>
+			<li class="<?php if( $id == $this -> request -> params['named']['category'] ) echo "current" ?>">
 				<a href="/catalogs/view/<?php echo $catalogId?>/category:<?php echo $id;?>"><?php echo $category;?></a>
 				<?php $subcategories= $this -> requestAction('/subcategories/get/'.$id); ?>
 				<?php if($subcategories):?>
