@@ -131,4 +131,20 @@ class Product extends AppModel {
 		)
 	);
 
+
+	// TODO: delete this function
+	public function afterFind($results, $primary = false) {
+		foreach ($results as $key => $val) {
+			if ( isset($val['Product']['image']) && isset($val['Product']['descripcion']) ) {
+					$results[$key]['Product']['image'] = 'technics-q-c-750-750-8.jpg';
+					$results[$key]['Product']['descripcion'] = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet est massa. Pellentesque quis sollicitudin turpis, nec consequat quam. Maecenas ac egestas velit, non viverra justo. Mauris id varius nunc, sed aliquet sapien. Nullam mauris sem, dapibus eget magna quis, faucibus interdum tellus. Phasellus sit amet felis quis nibh tempus blandit. Vivamus quis mauris molestie, suscipit metus at, laoreet nisi. Cras eget leo tempor, cursus leo vel, elementum arcu. Duis at mauris at eros dignissim venenatis eu non dolor. Cras sed felis tristique, tempus neque ac, condimentum elit.
+
+Donec augue justo, faucibus at fermentum sit amet, aliquam sed nulla. Quisque rhoncus congue erat nec mattis. Curabitur tortor tortor, tempor eget risus et, scelerisque tempor purus. Nam in orci risus. Nulla aliquet dui sit amet est laoreet ultrices. Phasellus elit lectus, posuere sit amet auctor quis, scelerisque nec ligula. Nulla sollicitudin nisi at augue iaculis, vitae interdum metus auctor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sollicitudin convallis ante id consequat.";
+					$results[$key]['Product']['precio'] = '100000';
+			}
+		}
+		return $results;
+	}
+
+
 }

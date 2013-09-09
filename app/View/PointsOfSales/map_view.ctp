@@ -38,6 +38,7 @@
     #map-canvas{
         min-width: 650px;
         min-height: 400px;
+
     }
 	    /* the overlayed element */
 

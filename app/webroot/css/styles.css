@@ -1,5 +1,5 @@
 body{
-	background: url(/img/body_bg.png) repeat-x top left #fff;
+	background: url(../img/body_bg.png) repeat-x top left #fff;
 }
 a{
 	text-decoration: none;
@@ -28,7 +28,7 @@ a{
 
 }
 .header{
-	background: url(/img/header_bg.jpg) top right #eeeef0 no-repeat;
+	background: url(../img/header_bg.jpg) top right #eeeef0 no-repeat;
 
 	-webkit-border-top-left-radius: 20px;
 	-moz-border-radius-topleft: 20px;
@@ -56,7 +56,7 @@ a{
 .menu_principal{
 	width: 100%;
 	clear: both;
-	background: url(/img/menu_bg.png) no-repeat left center;
+	background: url(../img/menu_bg.png) no-repeat left center;
 	margin-bottom: 7px;
 	float: left;
 }
@@ -89,7 +89,7 @@ a{
 	padding-right: 20px;
 }
 .footer{
-	background: url(/img/footer_bg.jpg) no-repeat right top;
+	background: url(../img/footer_bg.jpg) no-repeat right top;
 	width: 100%;
 	height: 220px;
 }
@@ -151,7 +151,7 @@ a{
 	float: left;
 }
 .nuestros_productos a{
-	background: url(/img/nuestros_productos.png) no-repeat;
+	background: url(../img/nuestros_productos.png) no-repeat;
 	padding: 9px 0;
 	float: left;
 	width: 252px;
@@ -212,7 +212,7 @@ a{
 	display: block;
 	font-size: 16px;
 	font-family: tahoma, san-serif;
-	background: url(/img/mas.png) no-repeat left center;
+	background: url(../img/mas.png) no-repeat left center;
 	padding-left: 24px;
 	position: relative;
 	z-index: 2;
@@ -258,7 +258,7 @@ a{
 	padding-top: 20px;
 	padding-left: 35px;
 	width: 679px;
-	background: url(/img/seccion_derecha.png) top left repeat-y #fff;
+	background: url(../img/seccion_derecha.png) top left repeat-y #fff;
 	margin-top: 8px;
 	position: relative;
 }
@@ -305,7 +305,11 @@ a{
 }
 .seccion_derecha .productos div h3{
 	color: #073f87;
-	font-size: 16px;
+	font-size: 15px;
+    height: 32px;
+}
+.seccion_derecha .productos p.marca{
+    font-size: 12px;
 }
 .prev, .next{
 	display: block;
@@ -332,34 +336,58 @@ a{
 	display: block;
 }
 .detalle_producto{
-	padding-top: 24px;
-	border-top: 1px dashed #acacad;
-	margin-top: 5px;
+	margin-top:0;
 	float: left;
 	width: 97%;
-	margin-top: 10px;
 	font-size: 24px;
-	margin-bottom: 26px;
+	margin-bottom: 20px;
+    color:#073f87;
 }
-.seccion_derecha .izq{
+.product-view {
+    padding: 20px;
+}
+.seccion_derecha .izq,
+.product-view .izq{
 	float: left;
 	width: 400px;
-	padding-bottom: 35px;
 	text-align: center;
 }
-.seccion_derecha .der{
+.seccion_derecha .der,
+.product-view .der {
 	float: right;
-	width: 240px;
-	margin-right: 26px;
-	padding-bottom: 35px;
+	width: 330px;
 }
-.seccion_derecha .der p{
+
+.seccion_derecha .der p,
+.product-view .der p{
 	color: #939598;
 	font-size: 16px;
 	text-align: justify;
 }
 img.imagen_principal{
 	border: 1px solid #e6e7e8;
+}
+.product-view img.imagen_principal{
+    max-width: 400px;
+    max-height: 400px;
+}
+.product-view label{
+    color:black;
+}
+.product-view span,
+.product-view p{
+    color:#58595b;
+    font-size: 14px;
+    font-weight: normal;
+}
+.product-view .der p.descripcion{
+    height: 350px;
+    overflow:auto;
+    color:#58595b;
+    font-size: 14px;
+    font-weight: normal;
+    margin-top: 5px;
+    line-height: 19px;
 }
 .controles{
 	margin-top: 15px;
@@ -587,4 +615,19 @@ a.view-map{
     margin-left:-2px;
 }
 
+
+/*OVERLAY*/
+/* use a semi-transparent image for the overlay */
+#overlay {
+    background-image:url(../img/overlay-background.jpg);
+    display: none;
+    color:#efefef;
+    width: 800px;
+    height:550px;
+}
+/* container for external content. uses vertical scrollbar, if needed */
+div.contentWrap {
+    height:550px;
+    overflow-y:auto;
+}
 

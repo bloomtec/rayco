@@ -25,10 +25,14 @@
 		 * @return void
 		 */
 		public function view($id = null) {
+			$this -> layout = "ajax";
+			$this->Product->contain('Brand', 'Image');
+
 			$this->Product->id = $id;
 			if(!$this->Product->exists()) {
 				throw new NotFoundException(__('Producto no válido'));
 			}
+
 			$this->set('product', $this->Product->read(null, $id));
 			$this->set('catalog', $this->Session->read('catalog'));
 			$this->set('referer', $this->referer());
