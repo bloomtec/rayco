@@ -51,4 +51,16 @@ class Image extends AppModel {
 			),
 		),
 	);
+
+	// TODO: delete this function
+	public function afterFind($results, $primary = false) {
+		/*
+		foreach ($results as $key => $val) {
+			if ( isset($val['Image']['image']) ) {
+				$results[$key]['Image']['image'] = 'technics-q-c-750-750-8.jpg';
+			}
+		}*/
+		return $results;
+	}
+
 }

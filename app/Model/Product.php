@@ -134,6 +134,7 @@ class Product extends AppModel {
 
 	// TODO: delete this function
 	public function afterFind($results, $primary = false) {
+		/*
 		foreach ($results as $key => $val) {
 			if ( isset($val['Product']['image']) && isset($val['Product']['descripcion']) ) {
 					$results[$key]['Product']['image'] = 'technics-q-c-750-750-8.jpg';
@@ -142,7 +143,7 @@ class Product extends AppModel {
 Donec augue justo, faucibus at fermentum sit amet, aliquam sed nulla. Quisque rhoncus congue erat nec mattis. Curabitur tortor tortor, tempor eget risus et, scelerisque tempor purus. Nam in orci risus. Nulla aliquet dui sit amet est laoreet ultrices. Phasellus elit lectus, posuere sit amet auctor quis, scelerisque nec ligula. Nulla sollicitudin nisi at augue iaculis, vitae interdum metus auctor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sollicitudin convallis ante id consequat.";
 					$results[$key]['Product']['precio'] = '100000';
 			}
-		}
+		}*/
 		return $results;
 	}
 

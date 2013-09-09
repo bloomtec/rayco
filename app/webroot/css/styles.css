@@ -235,11 +235,18 @@ a{
 .seccion_izquierda ul li{
 	margin-bottom: 20px;
 }
+.seccion_izquierda ul li.current a{
+   text-decoration: underline;
+    font-weight: bold;
+}
 .seccion_izquierda ul ul li{
 	margin-bottom: 5px;
 	margin-top: 5px;
 }
 
+.seccion_izquierda .busqueda{
+    padding-bottom: 30px;
+}
 .seccion_izquierda a{
 	color: #073f87;
 	font-size: 18px;
@@ -266,11 +273,16 @@ a{
 	margin-top: 8px;
 	position: relative;
 }
-.seccion_derecha h2{
+.seccion_derecha h2,
+.seccion_derecha h2 a{
 	color: #f16822;
 	font-size: 18px;
 	font-weight: normal;
 	margin-bottom: 8px;
+    text-transform: uppercase;
+}
+.seccion_derecha h2 a{
+    text-decoration: underline;
 }
 .seccion_derecha .paginacion{
 	float: right;
@@ -372,8 +384,15 @@ img.imagen_principal{
 	border: 1px solid #e6e7e8;
 }
 .product-view img.imagen_principal{
-    max-width: 400px;
-    max-height: 400px;
+    width: 400px;
+    height: 400px;
+}
+.product-view .arrow-left{
+    margin-left: 0;
+}
+.product-view .arrow-right{
+    float: right;
+    margin-right: -1px;
 }
 .product-view label{
     color:black;
@@ -385,7 +404,7 @@ img.imagen_principal{
     font-weight: normal;
 }
 .product-view .der p.descripcion{
-    height: 350px;
+    height: 403px;
     overflow:auto;
     color:#58595b;
     font-size: 14px;
@@ -393,8 +412,16 @@ img.imagen_principal{
     margin-top: 5px;
     line-height: 19px;
 }
-.controles{
+
+.product-view .controls{
 	margin-top: 15px;
+    width: 400px;
+}
+.product-view .scrollable{
+    width: 355px;
+}
+.product-view .scrollable a{
+    margin-right: 0;
 }
 .info_content{
 	background: none repeat scroll 0 0 #FFFFFF;

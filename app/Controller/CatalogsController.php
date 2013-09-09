@@ -42,24 +42,24 @@ class CatalogsController extends AppController {
 		$subcategories = array();
 		$products = array();
 		$products_title = '';
-		
+		$catalog = $this -> Catalog -> read(null, $this -> passedArgs['0']);
 		if(isset($this -> passedArgs['subcategory'])) {
 			//debug('subcategoria');
+			$category = $this -> Catalog -> Category -> read(null, $this -> passedArgs['category']);
 			$categories[$this -> passedArgs['category']] = $this -> passedArgs['category'];
 			$subcategories[$this -> passedArgs['subcategory']] = $this -> passedArgs['subcategory'];
 			$subcategory = $this -> Catalog -> Category -> Subcategory -> read(null, $this -> passedArgs['subcategory']);
-			$products_title = $subcategory['Subcategory']['nombre'];
+			$products_title = "<a href='/catalogs/view/".$catalog['Catalog']['id']."'>".$catalog['Catalog']['nombre']."</a> -> ". $category['Category']['nombre']." -> ".$subcategory['Subcategory']['nombre'];
 		} elseif(isset($this -> passedArgs['category'])) {
 			//debug('categoria');
 			$categories[$this -> passedArgs['category']] = $this -> passedArgs['category'];
 			$subcategories = $this -> Catalog -> Category -> Subcategory -> find('list', array('fields' => array('Subcategory.id'), 'conditions' => array('Subcategory.category_id' => $categories)));
 			$category = $this -> Catalog -> Category -> read(null, $this -> passedArgs['category']);
-			$products_title = $category['Category']['nombre'];
+			$products_title = "<a href='/catalogs/view/".$catalog['Catalog']['id']."'>".$catalog['Catalog']['nombre']."</a> -> ". $category['Category']['nombre'];
 		} elseif(isset($this -> passedArgs['0'])) {
 			//debug('catalogo');
 			$categories = $this -> Catalog -> Category -> find('list', array('fields' => array('Category.id'), 'conditions' => array('Category.catalog_id' => $this -> passedArgs['0'])));
 			$subcategories = $this -> Catalog -> Category -> Subcategory -> find('list', array('fields' => array('Subcategory.id'), 'conditions' => array('Subcategory.category_id' => $categories)));
-			$catalog = $this -> Catalog -> read(null, $this -> passedArgs['0']);
 			$products_title = $catalog['Catalog']['nombre'];
 		}
 		
