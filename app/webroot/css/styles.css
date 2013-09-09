@@ -488,18 +488,19 @@ img.imagen_principal{
 .locales .left{
 	width: 420px;
 	padding-right: 24px;
-	text-align: center;
+	text-align: left;
 }
 .locales .right{
 	width: 420px;
 	padding-left: 24px;
-	text-align: center;
+	text-align: left;
 }
 .info_content .carousel img, .info_content .controls img{
 	float: none;
 }
 .info_content .controls{
 	margin-bottom: 8px;
+    height: 72px;
 }
 .info_content .controls img{
 	margin:0;
@@ -522,6 +523,15 @@ img.imagen_principal{
 }
 .info_content .marca img{
 	margin: 0;
+}
+.main_image{
+
+    width:370px;
+    height: 370px;
+    float: none;
+    margin: 0 auto;
+    clear:both;
+    margin-top: 20px;
 }
 .main_image img{
     width:300px;
@@ -560,6 +570,9 @@ img.imagen_principal{
     width: 20000em;
     position: absolute;
     clear: both;
+}
+a.view-map{
+    margin-bottom: 10px;
 }
 .info_content form  input.invalid{
     border:solid red 1px;

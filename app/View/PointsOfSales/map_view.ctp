@@ -1,10 +1,15 @@
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&language=es"></script>
+<?php
+
+?>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.13&sensor=false&language=es"></script>
 <script>
 	var map;
+	var latlng =  new google.maps.LatLng(<?php echo $lat; ?>, <?php echo $lng; ?>);
+
 	function initialize() {
 		var mapOptions = {
-			zoom: 8,
-			center: new google.maps.LatLng(<?php echo $lat; ?>, <?php echo $lng; ?>),
+			center:latlng,
+			zoom: 18,
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 		};
 		map = new google.maps.Map(document.getElementById('map-canvas'),
@@ -13,9 +18,10 @@
 			map: map,
 			draggable: false,
 			animation: google.maps.Animation.DROP,
-			position: new google.maps.LatLng(<?php echo $lat; ?>, <?php echo $lng; ?>)
+			position: latlng
 		});
 		google.maps.event.addListener(marker, 'click', toggleBounce);
+
 	}
 	function toggleBounce() {
 
@@ -33,5 +39,10 @@
         min-width: 650px;
         min-height: 400px;
     }
+	    /* the overlayed element */
+
 </style>
+
+
+
 <div id="map-canvas"></div>

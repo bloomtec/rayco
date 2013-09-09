@@ -19,22 +19,19 @@
 		-moz-box-shadow:0 0 90px 5px #000;
 		-webkit-box-shadow: 0 0 90px #000;
 	}
+	.simple_overlay iframe{
 
-		/* close button positioned on upper right corner */
-	.simple_overlay .close {
-		background-image:url("/img/close.png");
-		position:absolute;
-		right:-15px;
-		top:-15px;
-		cursor:pointer;
-		height:35px;
-		width:35px;
+		min-width: 700px;
+		min-height: 415px;
 	}
+
 
 </style>
 <script type="text/javascript">
 	$(function() {
-		$("a[rel]").overlay();
+		$("a[rel]").overlay({
+			top:'center'
+		});
 	});
 </script>
 <?php echo $this -> element('nuestros_productos');?>
@@ -42,23 +39,32 @@
 	<h1>Nuestras oficinas</h1>
 	<div class="left">
         <?php foreach($locales as $key => $local):?>
-            <?php if($key % 2 == 0 && !empty($local['Image'])):?>
-            <div class="main_image">
-                <img src="/img/uploads/360x360/<?php echo $local['Image'][0]['image'];?>" />
-            </div>
-            <div class="controls">
-                <a class="arrow-left"><img src="/img/arrow-left.png" /></a>
-                <div class="scrollable">
-                    <div class="items">
-                        <?php foreach($local["Image"] as $i => $image):?>
-                        <a <?php if($i==0) echo "class='current'"?>><img src="/img/uploads/50x50/<?php echo $image['image'];?>" /></a>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
+            <?php if( $key % 2 == 0 ):?>
 
-                <a class="arrow-right"><img src="/img/arrow-right.png" /></a>
-                <div style="clear:both;"></div>
+            <div class="main_image">
+	            <?php if(!empty($local['Image'])): ?>
+                     <img src="/img/uploads/360x360/<?php echo $local['Image'][0]['image'];?>" />
+	            <?php else: ?>
+		            <img src="/img/rayco-local-no-disponible.jpg" />
+		        <?php endif;?>
             </div>
+
+	            <div class="controls">
+		            <?php if(!empty($local['Image'])): ?>
+		                <a class="arrow-left"><img src="/img/arrow-left.png" /></a>
+
+			                <div class="scrollable">
+			                    <div class="items">
+			                        <?php foreach($local["Image"] as $i => $image):?>
+			                        <a <?php if($i==0) echo "class='current'"?>><img src="/img/uploads/50x50/<?php echo $image['image'];?>" /></a>
+			                        <?php endforeach; ?>
+			                    </div>
+			                </div>
+
+		                <a class="arrow-right"><img src="/img/arrow-right.png" /></a>
+		                <div style="clear:both;"></div>
+		            <?php endif;?>
+	            </div>
 
             <p>
                 <strong>Correo electronico:</strong> info@rayco.com.co
@@ -72,24 +78,37 @@
 				    $lat = $local['PointsOfSale']['lat'];
 				    $lng = $local['PointsOfSale']['lng'];
 			    ?>
-			    <iframe
-				    id="simple_overlay_<?php echo $local['PointsOfSale']['id']; ?>"
-				    class="simple_overlay"
+			    <?php if( !empty($lat) && !empty($lng) ):?>
+		        <div id="simple_overlay_<?php echo $local['PointsOfSale']['id']; ?>"  class="simple_overlay">
+
+			        <div class="close" style="background-image:url(/img/close.png); position:absolute; right:-15px; top:-15px; cursor:pointer; height:35px;width:35px; z-index: 100"></div>
+
+			        <iframe
 				    src="/PointsOfSales/mapView/lat:<?php echo $lat; ?>/lng:<?php echo $lng; ?>"
 				    >
-			    </iframe>
-			    <a href="#" id="overlay_<?php echo $local['PointsOfSale']['id']; ?>" rel="#simple_overlay_<?php echo $local['PointsOfSale']['id']; ?>">Ver Mapa</a>
+				    </iframe>
+			     </div>
+			    <a class="view-map" href="#" id="overlay_<?php echo $local['PointsOfSale']['id']; ?>" rel="#simple_overlay_<?php echo $local['PointsOfSale']['id']; ?>">Ver Mapa</a>
+				<?php endif; ?>
 		    </p>
              <?php endif;?>
         <?php endforeach; ?>
 	</div>
 	<div class="right">
         <?php foreach($locales as $key => $local): //debug($local['Image']); ?>
-            <?php if($key % 2 != 0 && !empty($local['Image'])):?>
-                <div class="main_image">
-                    <img src="/img/uploads/360x360/<?php echo $local['Image'][0]['image'];?>" />
-                </div>
+            <?php if($key % 2 != 0  ):?>
+
+		        <div class="main_image">
+			        <?php if(!empty($local['Image'])): ?>
+					    <img src="/img/uploads/360x360/<?php echo $local['Image'][0]['image'];?>" />
+			        <?php else: ?>
+				        <img src="/img/rayco-local-no-disponible.jpg" />
+			        <?php endif;?>
+		        </div>
+
+
                 <div class="controls">
+	                <?php if(!empty($local['Image'])): ?>
                     <a class="arrow-left"><img src="/img/arrow-left.png" /></a>
                     <div class="scrollable">
                         <div class="items">
@@ -101,6 +120,7 @@
 
                     <a class="arrow-right"><img src="/img/arrow-right.png" /></a>
                     <div style="clear:both;"></div>
+	                <?php endif; ?>
                 </div>
 
                 <p>
@@ -115,14 +135,19 @@
 				        $lat = $local['PointsOfSale']['lat'];
 				        $lng = $local['PointsOfSale']['lng'];
 			        ?>
-			        <iframe
-				        id="simple_overlay_<?php echo $local['PointsOfSale']['id']; ?>"
-				        class="simple_overlay"
-				        src="/PointsOfSales/mapView/lat:<?php echo $lat; ?>/lng:<?php echo $lng; ?>"
-				        >
-			        </iframe>
-			        <a href="#" id="overlay_<?php echo $local['PointsOfSale']['id']; ?>" rel="#simple_overlay_<?php echo $local['PointsOfSale']['id']; ?>">Ver Mapa</a>
-		        </p>
+			        <?php if( !empty($lat) && !empty($lng) ):?>
+			        <div id="simple_overlay_<?php echo $local['PointsOfSale']['id']; ?>"  class="simple_overlay">
+
+				        <div class="close" style="background-image:url(/img/close.png); position:absolute; right:-15px; top:-15px; cursor:pointer; height:35px;width:35px; z-index: 100"></div>
+
+				        <iframe
+					        src="/PointsOfSales/mapView/lat:<?php echo $lat; ?>/lng:<?php echo $lng; ?>"
+					        >
+				        </iframe>
+			        </div>
+			        <a class="view-map" href="#" id="overlay_<?php echo $local['PointsOfSale']['id']; ?>" rel="#simple_overlay_<?php echo $local['PointsOfSale']['id']; ?>">Ver Mapa</a>
+			        <?php endif;?>
+				</p>
             <?php endif;?>
         <?php endforeach; ?>
 	</div>
