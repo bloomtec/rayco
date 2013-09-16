@@ -36,7 +36,7 @@
 </script>
 <?php echo $this -> element('nuestros_productos');?>
 <div class="info_content locales">
-	<h1>Nuestras oficinas</h1>
+	<h1>Nuestros Puntos de Venta</h1>
 	<div class="left">
         <?php foreach($locales as $key => $local):?>
             <?php if( $key % 2 == 0 ):?>
@@ -67,7 +67,7 @@
 	            </div>
 
             <p>
-                <strong>Correo electronico:</strong> info@rayco.com.co
+                <strong>Correo electronico:</strong> <?php echo  $local['PointsOfSale']['correo']?>
                 <br />
                 <strong>Tel:</strong> <?php echo  $local['PointsOfSale']['telefono']?> <strong>Cel:</strong> <?php echo  $local['PointsOfSale']['celular']?>
                 <br />

@@ -38,6 +38,16 @@ class PointsOfSale extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+		'correo' => array(
+			'mail' => array(
+				'rule' => array('email'),
+				'message' => 'Formato de correo eléctronico no valido',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
 		'telefono' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),

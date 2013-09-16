@@ -12,6 +12,13 @@
 			<?php echo h($pointsOfSale['PointsOfSale']['direccion']); ?>
 			&nbsp;
 		</dd>
+
+		<dt><?php echo __('Correo'); ?></dt>
+		<dd>
+			<?php echo h($pointsOfSale['PointsOfSale']['correo']); ?>
+			&nbsp;
+		</dd>
+
 		<dt><?php echo __('Teléfono'); ?></dt>
 		<dd>
 			<?php echo h($pointsOfSale['PointsOfSale']['telefono']); ?>

@@ -5,6 +5,7 @@
 
 		<th><?php echo $this -> Paginator -> sort('nombre'); ?></th>
 		<th><?php echo $this -> Paginator -> sort('direccion', 'Dirección'); ?></th>
+		<th><?php echo $this -> Paginator -> sort('direccion', 'Correo'); ?></th>
 		<th><?php echo $this -> Paginator -> sort('telefono', 'Teléfono'); ?></th>
         <th><?php echo $this -> Paginator -> sort('celular', 'Celular'); ?></th>
 		<th><?php echo $this -> Paginator -> sort('created', 'Creado'); ?></th>
@@ -16,6 +17,7 @@
 
 		<td><?php echo h($pointsOfSale['PointsOfSale']['nombre']); ?>&nbsp;</td>
 		<td><?php echo h($pointsOfSale['PointsOfSale']['direccion']); ?>&nbsp;</td>
+		<td><?php echo h($pointsOfSale['PointsOfSale']['correo']); ?>&nbsp;</td>
 		<td><?php echo h($pointsOfSale['PointsOfSale']['telefono']); ?>&nbsp;</td>
         <td><?php echo h($pointsOfSale['PointsOfSale']['celular']); ?>&nbsp;</td>
 		<td><?php echo h($pointsOfSale['PointsOfSale']['created']); ?>&nbsp;</td>

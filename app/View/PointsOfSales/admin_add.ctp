@@ -17,6 +17,8 @@
 		<br />
 		<?php echo $this -> Form -> input('direccion', array('label' => 'Dirección')); ?>
 		<br />
+		<?php echo $this -> Form -> input('correo', array('label' => 'Correo')); ?>
+		<br />
 		<?php echo $this -> Form -> input('telefono', array('label' => 'Teléfono')); ?>
         <br />
 		<?php echo $this -> Form -> input('celular', array('label' => 'Celular')); ?>

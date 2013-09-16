@@ -91,6 +91,12 @@
 	<!-- TEXTOS ADMINISTRABLES -->
 	<li>
 		<?php
+			echo $this->Html->link('Configuraciones', '/admin/configs/edit/1');
+		?>
+
+	</li>
+	<li>
+		<?php
 			echo $this->Html->link('Textos', '#');
 		?>
 		<ul>

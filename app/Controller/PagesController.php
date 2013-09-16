@@ -115,8 +115,11 @@ class PagesController extends AppController {
 	}
 
 	public function contacto() {
+
 		if($this->request->is('post')) {
-			$para  = 'ricardopandales@gmail.com, jc.rojas.sanchez@hotmail.com';
+			$this -> loadModel("Config");
+			$config = $this -> Config ->read(null,1);
+			$para  = $config['Config']['email_contactenos'];
 			$titulo = ':: Contacto RAYCO ::';
 			$mensaje =
 			'

@@ -18,7 +18,7 @@
 		<?php echo $company["Company"]["parrafo_2"]?>
 	</p>
 	
-	<a href="#" class="info_link">Contáctenos >>></a>
+	<a href="/contacto" class="info_link">Contáctenos >>></a>
 	
 	<div style="clear: both;"></div>
 	
