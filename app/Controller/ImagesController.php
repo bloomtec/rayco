@@ -44,7 +44,7 @@ class ImagesController extends AppController {
 				echo json_encode(array('success' => false));
 				exit(0);
 			}
-			if(!$this -> Attachment -> resize_image("resize", $folder . "/" . $fileName, $folder . "/360x360", $fileName, 400, 400)) {
+			if(!$this -> Attachment -> resize_image("resize", $folder . "/" . $fileName, $folder . "/400x400", $fileName, 400, 400)) {
 				echo json_encode(array('success' => false));
 				exit(0);
 			}
