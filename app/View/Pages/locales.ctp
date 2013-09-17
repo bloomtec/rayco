@@ -41,7 +41,7 @@
 	<div class="left">
         <?php foreach($locales as $key => $local):?>
             <?php if( $key % 2 == 0 ):?>
-
+			<h2><?php echo  $local['PointsOfSale']['nombre']?></h2>
             <div class="main_image">
 	            <?php if(!empty($local['Image'])): ?>
                      <img src="/img/uploads/360x360/<?php echo $local['Image'][0]['image'];?>" />
@@ -98,7 +98,7 @@
 	<div class="right">
         <?php foreach($locales as $key => $local): //debug($local['Image']); ?>
             <?php if($key % 2 != 0  ):?>
-
+		        <h2><?php echo  $local['PointsOfSale']['nombre']?></h2>
 		        <div class="main_image">
 			        <?php if(!empty($local['Image'])): ?>
 					    <img src="/img/uploads/360x360/<?php echo $local['Image'][0]['image'];?>" />

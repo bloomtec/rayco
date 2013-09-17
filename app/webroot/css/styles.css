@@ -544,6 +544,9 @@ img.imagen_principal{
 	font-weight: bold;
 	clear: both;
 }
+.locales h2{
+    color: #074087;
+}
 .locales .left{
 	width: 420px;
 	padding-right: 24px;
