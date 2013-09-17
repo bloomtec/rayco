@@ -25,35 +25,35 @@ class ImagesController extends AppController {
 			}
 			
 			if(!$this -> Attachment -> resize_image('resize', $folder . '/' . $fileName, $folder . '/50x50', $fileName, 50,	50)) {
-				echo json_encode(array('success' => 1));
+				echo json_encode(array('success' => false));
 				exit(0);
 			}
 			if(!$this -> Attachment -> resize_image("resize", $folder . "/" . $fileName, $folder . "/100x100", $fileName, 100, 100)) {
-				echo json_encode(array('success' => 2));
+				echo json_encode(array('success' => false));
 				exit(0);
 			}
 			if(!$this -> Attachment -> resize_image("resize", $folder . "/" . $fileName, $folder . "/150x150", $fileName, 150, 150)) {
-				echo json_encode(array('success' => 3));
+				echo json_encode(array('success' => false));
 				exit(0);
 			}
 			if(!$this -> Attachment -> resize_image("resize", $folder . "/" . $fileName, $folder . "/215x215", $fileName, 215, 215)) {
-				echo json_encode(array('success' => 4));
+				echo json_encode(array('success' => false));
 				exit(0);
 			}
 			if(!$this -> Attachment -> resize_image("resize", $folder . "/" . $fileName, $folder . "/360x360", $fileName, 360, 360)) {
-				echo json_encode(array('success' => 5));
+				echo json_encode(array('success' => false));
 				exit(0);
 			}
 			if(!$this -> Attachment -> resize_image("resize", $folder . "/" . $fileName, $folder . "/400x400", $fileName, 400, 400)) {
-				echo json_encode(array('success' => 6));
+				echo json_encode(array('success' => false));
 				exit(0);
 			}
 			if(!$this -> Attachment -> resize_image("resize", $folder . "/" . $fileName, $folder . "/750x750", $fileName, 750, 750)) {
-				echo json_encode(array('success' => 7));
+				echo json_encode(array('success' => false));
 				exit(0);
 			}
             if(!$this -> Attachment -> resize_image("resizeCrop", $folder . "/" . $fileName, $folder . "/thumb", $fileName, 184, 184)) {
-                echo json_encode(array('success' => 8));
+                echo json_encode(array('success' => false));
                 exit(0);
             }
 
@@ -77,7 +77,7 @@ class ImagesController extends AppController {
 						'foreign_key' => $foreign_key
 					));
 				} else {
-					echo json_encode(array('success' => 9));
+					echo json_encode(array('success' => false));
 				}
 			} else {
 				echo json_encode(array('success' => true));
