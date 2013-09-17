@@ -19,6 +19,7 @@
 		-moz-box-shadow:0 0 90px 5px #000;
 		-webkit-box-shadow: 0 0 90px #000;
 	}
+
 	.simple_overlay iframe{
 
 		min-width: 700px;
