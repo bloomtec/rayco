@@ -1,5 +1,5 @@
 (function ($) {
-    $.event.special.load = {
+   /* $.event.special.load = {
         add: function (hollaback) {
             if ( this.nodeType === 1 && this.tagName.toLowerCase() === 'img' && this.src !== '' ) {
                 // Image is already complete, fire the hollaback (fixes browser issues were cached
@@ -18,24 +18,28 @@
                 }
             }
         }
-    };
+    };*/
 }(jQuery));
 
 
-
-
 $(function(){
+
     $(".scrollable").scrollable({
         next:".arrow-right",
         prev:".arrow-left"
     });
+
+    $(".main_image img").load(function(){
+        $(this).animate({opacity:1},'fast');
+    });
+
     $('.scrollable a').click(function(){
         $that = $(this);
         $that.parents('.controls').prev().find('img').animate({opacity:0},'fast',function(){
+
             $that.addClass('current').siblings().removeClass('current')
-            $(this).attr('src',$that.children('img').attr('src').replace('50x50','360x360')).load(function(){
-                $(this).animate({opacity:1},'fast');
-            });
+            $(this).attr('src',$that.children('img').attr('src').replace('50x50','360x360'));
+
         });
     });
 
