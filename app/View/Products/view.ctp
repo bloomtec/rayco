@@ -8,8 +8,10 @@
 					<a class="arrow-left"><img src="/img/arrow-left.png" /></a>
 					<div class="scrollable">
 						<div class="items">
+							<a <?php  echo "class='current'"?>  href="#"><img src="/img/uploads/50x50/<?php echo $product['Product']['image'];?>" /></a>
 							<?php foreach($product["Image"] as $i => $image):?>
-								<a <?php if($i==0) echo "class='current'"?>><img src="/img/uploads/50x50/<?php echo $image['image'];?>" /></a>
+
+								<a href="#"><img src="/img/uploads/50x50/<?php echo $image['image'];?>" /></a>
 							<?php endforeach; ?>
 						</div>
 					</div>
