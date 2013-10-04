@@ -3,8 +3,6 @@
 /Documentacion
 /Documentacion/*
 /app/tmp
-/app/webroot/img/uploads
-/app/webroot/img/uploads/*
 /lib/Cake/Console/Templates/skel/tmp/
 /plugins
 /vendors
