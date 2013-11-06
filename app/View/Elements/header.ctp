@@ -10,7 +10,7 @@
 	<ul class="menu_principal">
 		<li><a class="inicio" href="/">Inicio</a></li>
 		<li><a class="empresa" href="/empresa">Nuestra Empresa</a></li>
-		<li><a class="locales" href="/locales">Locales</a></li>
+		<li><a class="locales" href="/locales">Puntos de Venta</a></li>
 		<li><a class="marca" href="/marcas">Nuestras marcas</a></li>
 		<li><a  href="/contacto">Contáctenos</a></li>
 		<div style="clear:both;"></div>

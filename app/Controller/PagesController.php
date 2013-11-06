@@ -111,7 +111,10 @@ class PagesController extends AppController {
 	}
 
 	public function home() {
-
+		$this -> loadModel("Catalog");
+		$raycoCatalog = $this -> Catalog -> read(null,1);
+		$raylujosCatalog = $this -> Catalog -> read(null,2);
+		$this -> set(compact('raycoCatalog','raylujosCatalog'));
 	}
 
 	public function contacto() {
