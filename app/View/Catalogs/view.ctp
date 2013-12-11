@@ -37,14 +37,15 @@
 	</div>
 	<div style="clear: both;"></div>
 	<div class="productos">
-		<?php foreach ($products as  $product): ?>
-		<div>
+		<?php $i = 1; ?>
+		<?php foreach ($products as  $key => $product): ?>
+		<div <?php if($key % 3 == 0) echo "style='clear:both;'"?>>
 			<a class="load" rel="#overlay" href="/products/view/<?php echo $product['Product']['id']; ?>"><h3><?php echo $product['Product']['referencia']; ?></h3></a>
 			<a class="load" rel="#overlay" href="/products/view/<?php echo $product['Product']['id']; ?>"><img src="/img/uploads/thumb/<?php echo $product['Product']['image']; ?>" /></a>
-			<p class="marca">Marca: <?php echo $product['Brand']['nombre']; ?></p>
-
+			<p class="marca"> <?php echo $product['Product']['descripcion']; ?></p>
 		</div>
 		<?php //debug($product); ?>
+
 		<?php endforeach; ?>
 	</div>
 	<div class="paginacion" style="clear:left;">
