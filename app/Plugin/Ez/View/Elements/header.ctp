@@ -88,13 +88,13 @@
 			</li>
 		</ul>
 	</li>
-	<!-- TEXTOS ADMINISTRABLES -->
+	<!-- Configuraciones -->
 	<li>
 		<?php
 			echo $this->Html->link('Configuraciones', '/admin/configs/edit/1');
 		?>
-
 	</li>
+	<!-- TEXTOS ADMINISTRABLES -->
 	<li>
 		<?php
 			echo $this->Html->link('Textos', '#');
@@ -103,6 +103,11 @@
 			<li>
 				<?php
 					echo $this->Html->link('Contacto', array('plugin' => false, 'controller' => 'texts', 'action' => 'edit', 1));
+				?>
+			</li>
+			<li>
+				<?php
+					echo $this->Html->link('Footer', array('plugin' => false, 'controller' => 'texts', 'action' => 'edit', 2));
 				?>
 			</li>
 		</ul>

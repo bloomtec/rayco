@@ -27,5 +27,13 @@ class TextsController extends AppController {
 		}
 		$this -> request -> data = $this -> Text -> read(null, $id);
 	}
+
+	public function getText($id = null) {
+		$this -> Text -> id = $id;
+		if (!$this -> Text -> exists()) {
+			throw new NotFoundException(__('Texto no válido'));
+		}
+		return $this->Text->read(null, $id);
+	}
 	
 }
